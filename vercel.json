@@ -1,0 +1,4 @@
+{
+  "installCommand": "npm install -g pnpm@11.6.0 && pnpm install",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

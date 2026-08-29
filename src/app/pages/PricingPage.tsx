@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
+import { Helmet } from "react-helmet-async";
 import { PricingSection } from "../components/PricingSection";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -147,6 +148,26 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 export function PricingPage() {
   return (
     <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
+      <Helmet>
+        <title>Pricing & Process | Giorgi Lortkipanidze</title>
+        <meta
+          name="description"
+          content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs."
+        />
+        <meta property="og:title" content="Pricing & Process | Giorgi Lortkipanidze" />
+        <meta
+          property="og:description"
+          content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs."
+        />
+        <meta property="og:url" content="https://giorgilortkipanidze.online/pricing" />
+        <meta name="twitter:title" content="Pricing & Process | Giorgi Lortkipanidze" />
+        <meta
+          name="twitter:description"
+          content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs."
+        />
+        <link rel="canonical" href="https://giorgilortkipanidze.online/pricing" />
+      </Helmet>
+
       <PricingSection />
 
       {/* Process */}

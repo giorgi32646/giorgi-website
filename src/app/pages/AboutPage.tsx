@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Helmet } from "react-helmet-async";
 import { AboutSection } from "../components/AboutSection";
 
 const FADE_UP = {
@@ -75,6 +76,26 @@ const VALUES = [
 export function AboutPage() {
   return (
     <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
+      <Helmet>
+        <title>About | Giorgi Lortkipanidze</title>
+        <meta
+          name="description"
+          content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on."
+        />
+        <meta property="og:title" content="About | Giorgi Lortkipanidze" />
+        <meta
+          property="og:description"
+          content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on."
+        />
+        <meta property="og:url" content="https://giorgilortkipanidze.online/about" />
+        <meta name="twitter:title" content="About | Giorgi Lortkipanidze" />
+        <meta
+          name="twitter:description"
+          content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on."
+        />
+        <link rel="canonical" href="https://giorgilortkipanidze.online/about" />
+      </Helmet>
+
       <AboutSection />
 
       {/* Timeline */}

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { createPortal } from "react-dom";
+import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "motion/react";
 import {
   X, ArrowUpRight, Check,
@@ -783,6 +784,26 @@ export function PortfolioPage() {
 
   return (
     <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
+      <Helmet>
+        <title>Portfolio | Giorgi Lortkipanidze</title>
+        <meta
+          name="description"
+          content="SaaS products, UI/UX design, brand identities, and concept work — designed and built end to end in Tbilisi. Browse the full project archive."
+        />
+        <meta property="og:title" content="Portfolio | Giorgi Lortkipanidze" />
+        <meta
+          property="og:description"
+          content="SaaS products, UI/UX design, brand identities, and concept work — designed and built end to end in Tbilisi. Browse the full project archive."
+        />
+        <meta property="og:url" content="https://giorgilortkipanidze.online/portfolio" />
+        <meta name="twitter:title" content="Portfolio | Giorgi Lortkipanidze" />
+        <meta
+          name="twitter:description"
+          content="SaaS products, UI/UX design, brand identities, and concept work — designed and built end to end in Tbilisi. Browse the full project archive."
+        />
+        <link rel="canonical" href="https://giorgilortkipanidze.online/portfolio" />
+      </Helmet>
+
       {/* Page header */}
       <div style={{
         background: "linear-gradient(180deg, rgba(0,128,255,0.04) 0%, transparent 100%)",

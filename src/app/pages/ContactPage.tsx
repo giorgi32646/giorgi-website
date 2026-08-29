@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Helmet } from "react-helmet-async";
 import { ContactSection } from "../components/ContactSection";
 import { Mail, Twitter, Clock, MessageSquare, Zap, Shield } from "lucide-react";
 
@@ -70,6 +71,26 @@ const CONTACT_FAQS = [
 export function ContactPage() {
   return (
     <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
+      <Helmet>
+        <title>Contact | Giorgi Lortkipanidze</title>
+        <meta
+          name="description"
+          content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4."
+        />
+        <meta property="og:title" content="Contact | Giorgi Lortkipanidze" />
+        <meta
+          property="og:description"
+          content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4."
+        />
+        <meta property="og:url" content="https://giorgilortkipanidze.online/contact" />
+        <meta name="twitter:title" content="Contact | Giorgi Lortkipanidze" />
+        <meta
+          name="twitter:description"
+          content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4."
+        />
+        <link rel="canonical" href="https://giorgilortkipanidze.online/contact" />
+      </Helmet>
+
       <ContactSection />
 
       {/* What to include */}

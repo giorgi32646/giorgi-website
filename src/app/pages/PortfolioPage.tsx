@@ -795,13 +795,13 @@ export function PortfolioPage() {
           property="og:description"
           content="SaaS products, UI/UX design, brand identities, and concept work — designed and built end to end in Tbilisi. Browse the full project archive."
         />
-        <meta property="og:url" content="https://giorgilortkipanidze.online/portfolio" />
+        <meta property="og:url" content="https://www.giorgilortkipanidze.online/portfolio" />
         <meta name="twitter:title" content="Portfolio | Giorgi Lortkipanidze" />
         <meta
           name="twitter:description"
           content="SaaS products, UI/UX design, brand identities, and concept work — designed and built end to end in Tbilisi. Browse the full project archive."
         />
-        <link rel="canonical" href="https://giorgilortkipanidze.online/portfolio" />
+        <link rel="canonical" href="https://www.giorgilortkipanidze.online/portfolio" />
       </Helmet>
 
       {/* Page header */}

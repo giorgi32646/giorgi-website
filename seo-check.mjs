@@ -1,7 +1,7 @@
 import { chromium } from "@playwright/test";
 
 const BASE = "http://localhost:4173";
-const ORIGIN = "https://giorgilortkipanidze.online";
+const ORIGIN = "https://www.giorgilortkipanidze.online";
 
 const ROUTES = [
   {

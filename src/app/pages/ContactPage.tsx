@@ -82,13 +82,13 @@ export function ContactPage() {
           property="og:description"
           content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4."
         />
-        <meta property="og:url" content="https://giorgilortkipanidze.online/contact" />
+        <meta property="og:url" content="https://www.giorgilortkipanidze.online/contact" />
         <meta name="twitter:title" content="Contact | Giorgi Lortkipanidze" />
         <meta
           name="twitter:description"
           content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4."
         />
-        <link rel="canonical" href="https://giorgilortkipanidze.online/contact" />
+        <link rel="canonical" href="https://www.giorgilortkipanidze.online/contact" />
       </Helmet>
 
       <ContactSection />

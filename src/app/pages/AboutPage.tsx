@@ -87,13 +87,13 @@ export function AboutPage() {
           property="og:description"
           content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on."
         />
-        <meta property="og:url" content="https://giorgilortkipanidze.online/about" />
+        <meta property="og:url" content="https://www.giorgilortkipanidze.online/about" />
         <meta name="twitter:title" content="About | Giorgi Lortkipanidze" />
         <meta
           name="twitter:description"
           content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on."
         />
-        <link rel="canonical" href="https://giorgilortkipanidze.online/about" />
+        <link rel="canonical" href="https://www.giorgilortkipanidze.online/about" />
       </Helmet>
 
       <AboutSection />

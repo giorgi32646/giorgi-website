@@ -15,13 +15,13 @@ export function WorkPage() {
           property="og:description"
           content="Own products designed and developed solo, from zero to production — Universal Drone OS, RedFlag.ai, and SecureShare. Real-time systems, AI, and encryption."
         />
-        <meta property="og:url" content="https://giorgilortkipanidze.online/work" />
+        <meta property="og:url" content="https://www.giorgilortkipanidze.online/work" />
         <meta name="twitter:title" content="Selected Work | Giorgi Lortkipanidze" />
         <meta
           name="twitter:description"
           content="Own products designed and developed solo, from zero to production — Universal Drone OS, RedFlag.ai, and SecureShare. Real-time systems, AI, and encryption."
         />
-        <link rel="canonical" href="https://giorgilortkipanidze.online/work" />
+        <link rel="canonical" href="https://www.giorgilortkipanidze.online/work" />
       </Helmet>
 
       <WorkSection />

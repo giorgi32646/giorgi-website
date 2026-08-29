@@ -159,13 +159,13 @@ export function PricingPage() {
           property="og:description"
           content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs."
         />
-        <meta property="og:url" content="https://giorgilortkipanidze.online/pricing" />
+        <meta property="og:url" content="https://www.giorgilortkipanidze.online/pricing" />
         <meta name="twitter:title" content="Pricing & Process | Giorgi Lortkipanidze" />
         <meta
           name="twitter:description"
           content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs."
         />
-        <link rel="canonical" href="https://giorgilortkipanidze.online/pricing" />
+        <link rel="canonical" href="https://www.giorgilortkipanidze.online/pricing" />
       </Helmet>
 
       <PricingSection />

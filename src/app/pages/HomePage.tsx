@@ -21,13 +21,13 @@ export function HomePage() {
           property="og:description"
           content="Designer-developer building production-ready SaaS interfaces. No handoff, no delays — just shipped UI. Available for freelance work."
         />
-        <meta property="og:url" content="https://giorgilortkipanidze.online/" />
+        <meta property="og:url" content="https://www.giorgilortkipanidze.online/" />
         <meta name="twitter:title" content="Giorgi Lortkipanidze | SaaS UI/UX Designer & Developer" />
         <meta
           name="twitter:description"
           content="Designer-developer building production-ready SaaS interfaces. No handoff, no delays — just shipped UI. Available for freelance work."
         />
-        <link rel="canonical" href="https://giorgilortkipanidze.online/" />
+        <link rel="canonical" href="https://www.giorgilortkipanidze.online/" />
       </Helmet>
       <HeroSection />
       <TechMarquee />

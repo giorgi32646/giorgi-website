@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { PricingSection } from "../components/PricingSection";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -121,23 +121,25 @@ function FaqItem({ q, a }: { q: string; a: string }) {
           <ChevronDown size={18} />
         </motion.span>
       </button>
-      {open && (
-        <motion.p
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          style={{
-            color: "#8A93A6",
-            fontSize: "0.9rem",
-            lineHeight: 1.75,
-            fontFamily: "'DM Sans', sans-serif",
-            margin: "0 0 20px",
-            paddingRight: "32px",
-          }}
-        >
-          {a}
-        </motion.p>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.p
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            style={{
+              color: "#8A93A6",
+              fontSize: "0.9rem",
+              lineHeight: 1.75,
+              fontFamily: "'DM Sans', sans-serif",
+              margin: "0 0 20px",
+              paddingRight: "32px",
+            }}
+          >
+            {a}
+          </motion.p>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

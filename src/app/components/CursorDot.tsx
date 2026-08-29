@@ -104,16 +104,21 @@ export function CursorDot() {
       }
     };
 
+    const onLeave = () => setVisible(false);
+    const onEnter = () => setVisible(true);
+
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mouseover", onOver, { passive: true });
-    document.addEventListener("mouseleave", () => setVisible(false));
-    document.addEventListener("mouseenter", () => setVisible(true));
+    document.addEventListener("mouseleave", onLeave);
+    document.addEventListener("mouseenter", onEnter);
     raf.current = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(raf.current);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
+      document.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("mouseenter", onEnter);
     };
   }, []);
 

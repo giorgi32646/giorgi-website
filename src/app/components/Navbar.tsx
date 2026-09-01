@@ -5,7 +5,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 
 const LOGO_INITIALS = "GL";
 const LOGO_NAME     = "Giorgi Lortkipanidze";
-const MAILTO        = "mailto:thegiorgilortki@gmail.com";
+const CTA_HREF      = "/book";
 const CTA_TEXT      = "Book a Call";
 
 const NAV_LINKS = [
@@ -151,7 +151,8 @@ export function Navbar() {
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexShrink: 0 }}>
             {!isMobile && (
               <motion.a
-                href={MAILTO}
+                href={CTA_HREF}
+                onClick={(e) => { e.preventDefault(); handleLink(CTA_HREF); }}
                 whileHover={{ scale: 1.04, boxShadow: "0 0 22px rgba(0,128,255,0.45)" }}
                 whileTap={{ scale: 0.97 }}
                 style={{
@@ -233,7 +234,8 @@ export function Navbar() {
                   );
                 })}
                 <a
-                  href={MAILTO}
+                  href={CTA_HREF}
+                  onClick={(e) => { e.preventDefault(); handleLink(CTA_HREF); }}
                   style={{
                     marginTop: "8px", display: "block", textAlign: "center",
                     padding: "12px 24px", borderRadius: "9999px", background: "#0080FF",

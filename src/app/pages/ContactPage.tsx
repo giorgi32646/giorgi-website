@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router";
 import { ContactSection } from "../components/ContactSection";
-import { Mail, Twitter, Clock, MessageSquare, Zap, Shield } from "lucide-react";
+import { Mail, Twitter, Clock, MessageSquare, Zap, Shield, CalendarDays } from "lucide-react";
 
 const FADE_UP = {
   initial: { opacity: 0, y: 28 },
@@ -33,6 +34,13 @@ const WHAT_TO_INCLUDE = [
 ];
 
 const WAYS_TO_REACH = [
+  {
+    icon: CalendarDays,
+    label: "Book a call",
+    value: "Free 30-min intro",
+    href: "/book",
+    note: "Fastest way to get time on my calendar",
+  },
   {
     icon: Mail,
     label: "Email",
@@ -69,6 +77,8 @@ const CONTACT_FAQS = [
 ];
 
 export function ContactPage() {
+  const navigate = useNavigate();
+
   return (
     <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
       <Helmet>
@@ -236,15 +246,17 @@ export function ContactPage() {
             </h2>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-5" style={{ maxWidth: "640px" }}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" style={{ maxWidth: "960px" }}>
             {WAYS_TO_REACH.map((channel, i) => {
               const Icon = channel.icon;
+              const isInternal = channel.href.startsWith("/");
               return (
                 <motion.a
                   key={channel.label}
                   href={channel.href}
                   target={channel.href.startsWith("http") ? "_blank" : undefined}
                   rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  onClick={isInternal ? (e) => { e.preventDefault(); navigate(channel.href); } : undefined}
                   {...FADE_UP}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   style={{

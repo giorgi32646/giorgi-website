@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router";
 import { PricingSection } from "../components/PricingSection";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -146,6 +147,8 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 export function PricingPage() {
+  const navigate = useNavigate();
+
   return (
     <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
       <Helmet>
@@ -408,22 +411,49 @@ export function PricingPage() {
             >
               Still have questions?
             </p>
-            <a
-              href="mailto:thegiorgilortki@gmail.com"
+            <div
               style={{
-                display: "inline-block",
-                background: "#0080FF",
-                color: "#0A0E1A",
-                borderRadius: "12px",
-                padding: "13px 28px",
-                fontSize: "0.9rem",
-                fontWeight: 700,
-                textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "12px",
+                justifyContent: "center",
               }}
             >
-              Ask me directly →
-            </a>
+              <a
+                href="/book"
+                onClick={(e) => { e.preventDefault(); navigate("/book"); }}
+                style={{
+                  display: "inline-block",
+                  background: "#0080FF",
+                  color: "#0A0E1A",
+                  borderRadius: "12px",
+                  padding: "13px 28px",
+                  fontSize: "0.9rem",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  fontFamily: "'DM Sans', sans-serif",
+                }}
+              >
+                Book a discovery call →
+              </a>
+              <a
+                href="mailto:thegiorgilortki@gmail.com"
+                style={{
+                  display: "inline-block",
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  color: "#F5F7FA",
+                  borderRadius: "12px",
+                  padding: "13px 28px",
+                  fontSize: "0.9rem",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  fontFamily: "'DM Sans', sans-serif",
+                }}
+              >
+                Ask me directly
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>

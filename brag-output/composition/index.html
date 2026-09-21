@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <title>Giorgi — Series A (2016)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="assets/audio-data.js"></script>
+    <style>
+      @font-face { font-family: "Syne"; font-weight: 800; src: url("assets/fonts/syne-latin-800-normal.woff2") format("woff2"); }
+      @font-face { font-family: "Syne"; font-weight: 700; src: url("assets/fonts/syne-latin-700-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Sans"; font-weight: 400; src: url("assets/fonts/dm-sans-latin-400-normal.woff2") format("woff2"); }
+      @font-face { font-family: "DM Sans"; font-weight: 500; src: url("assets/fonts/dm-sans-latin-500-normal.woff2") format("woff2"); }
+      @font-face { font-family: "JetBrains Mono"; font-weight: 500; src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); }
+
+      :root {
+        --bg: #0a0e1a;
+        --card: #0c1220;
+        --card-2: #141828;
+        --border: rgba(255, 255, 255, 0.08);
+        --text: #f5f7fa;
+        --muted: #8a93a6;
+        --blue: #0080ff;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); }
+      body { color: var(--text); font-family: "DM Sans", sans-serif; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); }
+
+      .clip { position: absolute; inset: 0; }
+      .scene { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 160px; }
+      .mono { font-family: "JetBrains Mono", monospace; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+      .display { font-family: "Syne", sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 1.08; }
+      .grad {
+        background: linear-gradient(90deg, #ffffff 20%, #0080ff 100%);
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent; color: transparent;
+      }
+
+      /* ---------- persistent background (audio-reactive mesh glow) ---------- */
+      #bg { overflow: hidden; }
+      .blob { position: absolute; border-radius: 50%; filter: blur(120px); display: block; }
+      #blob-a { width: 1100px; height: 1100px; left: -260px; top: -420px; background: radial-gradient(circle, rgba(0,128,255,0.55), rgba(0,128,255,0) 70%); }
+      #blob-b { width: 1000px; height: 1000px; right: -300px; bottom: -460px; background: radial-gradient(circle, rgba(0,200,255,0.35), rgba(0,200,255,0) 70%); }
+      #grid {
+        position: absolute; inset: 0; display: block;
+        background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+        background-size: 80px 80px;
+      }
+
+      /* chrome shared by the "deck" scenes */
+      .corner { position: absolute; font-size: 22px; color: var(--muted); }
+      .corner.tl { left: 80px; top: 64px; }
+      .corner.tr { right: 80px; top: 64px; }
+
+      /* ---------- S1 press release ---------- */
+      #s1-dateline { font-size: 26px; color: var(--blue); margin-bottom: 44px; }
+      #s1-line { font-family: "Syne", sans-serif; font-weight: 700; font-size: 96px; line-height: 1.12; letter-spacing: -0.02em; max-width: 1500px; }
+      #s1-line .w { display: inline-block; white-space: nowrap; }
+      #s1-stamp {
+        display: inline-block; margin-top: 64px; padding: 16px 30px;
+        border: 3px solid var(--blue); border-radius: 10px;
+        font-size: 40px; color: var(--text); background: rgba(0,128,255,0.10);
+      }
+
+      /* ---------- S2 hero ---------- */
+      #s2-pill {
+        display: inline-flex; align-items: center; gap: 14px; padding: 14px 28px; border-radius: 999px;
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(0,128,255,0.35);
+        margin-bottom: 44px;
+      }
+      #s2-dot { display: block; width: 16px; height: 16px; border-radius: 50%; background: var(--blue); }
+      #s2-pill span.t { color: var(--blue); font-size: 30px; font-weight: 500; }
+      #s2-name { font-size: 150px; color: #fff; }
+      #s2-title { font-size: 96px; margin-top: 10px; display: block; }
+      #s2-sub { font-size: 38px; color: var(--muted); line-height: 1.6; max-width: 1400px; margin-top: 40px; }
+
+      /* ---------- S3 pitch ---------- */
+      #s3-head { font-size: 108px; position: relative; display: block; }
+      #s3-strike-wrap { position: relative; display: inline-block; }
+      #s3-strike { position: absolute; left: -6px; right: -6px; top: 54%; height: 12px; border-radius: 6px; background: var(--blue); display: block; transform-origin: left center; }
+      #s3-cards { display: flex; gap: 36px; margin-top: 90px; }
+      .card {
+        width: 460px; padding: 40px 40px 44px; text-align: left; border-radius: 20px;
+        background: var(--card); border: 1px solid var(--border);
+      }
+      .card .num { font-size: 22px; color: var(--blue); margin-bottom: 26px; }
+      .card h3 { font-family: "Syne", sans-serif; font-weight: 700; font-size: 44px; line-height: 1.15; }
+
+      /* ---------- S4 traction ---------- */
+      #s4-chart { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; display: block; }
+      #s4-title { font-size: 150px; margin-bottom: 80px; }
+      #s4-stats { display: flex; gap: 60px; }
+      .stat { width: 440px; padding: 44px 30px; border-radius: 20px; background: rgba(12,18,32,0.88); border: 1px solid var(--border); }
+      .stat .v { font-family: "Syne", sans-serif; font-weight: 800; font-size: 120px; line-height: 1; color: #fff; }
+      .stat .l { font-size: 32px; color: var(--muted); margin-top: 18px; }
+
+      /* ---------- S5 quote ---------- */
+      #s5-card { max-width: 1480px; padding: 80px 100px; border-radius: 28px; background: var(--card); border: 1px solid var(--border); text-align: left; }
+      #s5-mark { font-family: "Syne", sans-serif; font-weight: 800; font-size: 180px; line-height: 0.6; color: var(--blue); height: 90px; display: block; }
+      #s5-quote { font-family: "Syne", sans-serif; font-weight: 700; font-size: 76px; line-height: 1.18; letter-spacing: -0.015em; }
+      #s5-attr { font-size: 36px; color: var(--muted); margin-top: 44px; }
+
+      /* ---------- S6 raise + lockup ---------- */
+      #s6-raise { position: absolute; inset: 0; padding: 0 140px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      #s6-label { font-size: 34px; color: var(--blue); margin-bottom: 30px; }
+      #s6-amount { font-size: 112px; } .nw { white-space: nowrap; }
+      #s6-lock { position: absolute; inset: 0; padding: 0 140px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      #s6-name { font-size: 132px; color: #fff; }
+      #s6-title { font-size: 84px; margin-top: 8px; display: block; }
+      #s6-url { font-size: 40px; color: var(--blue); margin-top: 48px; font-weight: 500; }
+      #s6-foot { position: absolute; bottom: 70px; left: 0; right: 0; text-align: center; font-size: 24px; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-wwvb" id="root" data-composition-id="main" data-start="0" data-duration="23" data-width="1920" data-height="1080">
+
+      <!-- persistent background -->
+      <div data-hf-id="hf-xqyo" id="bg" class="clip" data-start="0" data-duration="23" data-track-index="0">
+        <div data-hf-id="hf-gs5t" id="grid"></div>
+        <div data-hf-id="hf-x001" id="blob-a" class="blob" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-0y42" id="blob-b" class="blob" data-layout-allow-overflow=""></div>
+      </div>
+
+      <!-- S1 press release -->
+      <section data-hf-id="hf-gxgi" id="s1" class="clip scene" data-start="0" data-duration="3.6" data-track-index="1">
+        <div data-hf-id="hf-x4xe" id="s1-dateline" class="mono">For immediate release — 2016</div>
+        <h1 data-hf-id="hf-gkvq" id="s1-line"></h1>
+        <div data-hf-id="hf-ti4e" id="s1-stamp" class="mono">Team size: 1</div>
+      </section>
+
+      <!-- S2 hero -->
+      <section data-hf-id="hf-0cji" id="s2" class="clip scene" data-start="3.6" data-duration="3.4" data-track-index="1">
+        <div data-hf-id="hf-cb7q" id="s2-pill"><span data-hf-id="hf-fqyb" id="s2-dot"></span><span data-hf-id="hf-3ur5" class="t">Available for freelance work</span></div>
+        <h1 data-hf-id="hf-2s90" id="s2-name" class="display">Giorgi Lortkipanidze</h1>
+        <h2 data-hf-id="hf-d7m0" id="s2-title" class="display grad">Designer &amp; Developer</h2>
+        <p data-hf-id="hf-br9b" id="s2-sub">I design and build production-ready SaaS interfaces — no handoff, no delays.</p>
+      </section>
+
+      <!-- S3 pitch -->
+      <section data-hf-id="hf-q5xl" id="s3" class="clip scene" data-start="7" data-duration="5.4" data-track-index="1">
+        <div data-hf-id="hf-l8p5" class="corner tl mono">Pitch deck — confidential</div>
+        <div data-hf-id="hf-slqr" class="corner tr mono">3 / 12</div>
+        <div data-hf-id="hf-fkeq" id="s3-headwrap">
+          <h1 data-hf-id="hf-z1v3" id="s3-head" class="display">We're the Uber for design <span data-hf-id="hf-czea" id="s3-strike-wrap">handoff<span data-hf-id="hf-ak4v" id="s3-strike"></span></span>.</h1>
+        </div>
+        <div data-hf-id="hf-1htp" id="s3-cards">
+          <div data-hf-id="hf-jus0" class="card" id="c1"><div data-hf-id="hf-da16" class="num mono">01</div><h3 data-hf-id="hf-r78r">No Handoff Delays</h3></div>
+          <div data-hf-id="hf-uq9n" class="card" id="c2"><div data-hf-id="hf-doc7" class="num mono">02</div><h3 data-hf-id="hf-pld3">Async-First Communication</h3></div>
+          <div data-hf-id="hf-okju" class="card" id="c3"><div data-hf-id="hf-e2n8" class="num mono">03</div><h3 data-hf-id="hf-c2z2">Production-Ready Code</h3></div>
+        </div>
+      </section>
+
+      <!-- S4 traction -->
+      <section data-hf-id="hf-m0ge" id="s4" class="clip scene" data-start="12.4" data-duration="3.4" data-track-index="1">
+        <svg data-hf-id="hf-gmfy" id="s4-chart" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+          <path data-hf-id="hf-wwfr" id="s4-line" d="M 80 960 C 700 950, 1150 930, 1400 780 S 1760 300, 1850 120" fill="none" stroke="#0080FF" stroke-opacity="0.45" stroke-width="6" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+        </svg>
+        <div data-hf-id="hf-how0" class="corner tl mono">Board update — Q4</div>
+        <div data-hf-id="hf-p9pz" class="corner tr mono">7 / 12</div>
+        <h1 data-hf-id="hf-ea8q" id="s4-title" class="display">Traction</h1>
+        <div data-hf-id="hf-5i1i" id="s4-stats">
+          <div data-hf-id="hf-1uv6" class="stat" id="st1"><div data-hf-id="hf-9bju" class="v" id="v1">0+</div><div data-hf-id="hf-zvi1" class="l">Years of experience</div></div>
+          <div data-hf-id="hf-xwr5" class="stat" id="st2"><div data-hf-id="hf-rh3x" class="v" id="v2">0+</div><div data-hf-id="hf-unfr" class="l">Products shipped</div></div>
+          <div data-hf-id="hf-x53c" class="stat" id="st3"><div data-hf-id="hf-fubi" class="v" id="v3">0%</div><div data-hf-id="hf-n236" class="l">Remote-native</div></div>
+        </div>
+      </section>
+
+      <!-- S5 quote -->
+      <section data-hf-id="hf-3no4" id="s5" class="clip scene" data-start="15.8" data-duration="3.2" data-track-index="1">
+        <div data-hf-id="hf-pu4x" class="corner tl mono">In the press</div>
+        <div data-hf-id="hf-vpc8" id="s5-card">
+          <span data-hf-id="hf-q9ss" id="s5-mark">“</span>
+          <p data-hf-id="hf-8dcu" id="s5-quote">Giorgi delivered our entire design system in three weeks.</p>
+          <p data-hf-id="hf-q8qb" id="s5-attr">— CTO, RedFlag.ai</p>
+        </div>
+      </section>
+
+      <!-- S6 raise + lockup -->
+      <section data-hf-id="hf-aexw" id="s6" class="clip" data-start="19" data-duration="4" data-track-index="1">
+        <div data-hf-id="hf-lkz9" id="s6-raise">
+          <div data-hf-id="hf-q3s6" id="s6-label" class="mono">Now raising:</div>
+          <h1 data-hf-id="hf-i88k" id="s6-amount" class="display">one Full MVP. <span data-hf-id="hf-12c5" class="nw">$15–30k.</span></h1>
+        </div>
+        <div data-hf-id="hf-pfg2" id="s6-lock">
+          <h1 data-hf-id="hf-yk6w" id="s6-name" class="display">Giorgi Lortkipanidze</h1>
+          <h2 data-hf-id="hf-90lw" id="s6-title" class="display grad">Designer &amp; Developer</h2>
+          <p data-hf-id="hf-5ex5" id="s6-url">giorgilortkipanidze.online</p>
+        </div>
+        <div data-hf-id="hf-bvnx" id="s6-foot" class="mono">Headcount: 1 · Handoffs: 0</div>
+      </section>
+
+      <!-- audio -->
+      <audio data-hf-id="hf-k43j" id="music" src="assets/music/happy-beats-business-moves-vol-11-by-ende-dot-app.mp3" data-start="0" data-duration="23" data-track-index="10" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0.32},{&quot;t&quot;:21.2,&quot;v&quot;:0.32},{&quot;t&quot;:23,&quot;v&quot;:0}]}]}"></audio>
+
+      <audio data-hf-id="hf-wc9w" id="key-1" src="assets/sfx/keyboard/keypress-003.wav" data-start="0.25" data-duration="0.14" data-track-index="11" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-81is" id="key-2" src="assets/sfx/keyboard/keypress-007.wav" data-start="0.40" data-duration="0.14" data-track-index="11" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-2f5g" id="key-3" src="assets/sfx/keyboard/keypress-011.wav" data-start="0.55" data-duration="0.14" data-track-index="11" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-v1ns" id="key-4" src="assets/sfx/keyboard/keypress-015.wav" data-start="0.70" data-duration="0.14" data-track-index="11" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-6tyv" id="key-5" src="assets/sfx/keyboard/keypress-019.wav" data-start="0.85" data-duration="0.14" data-track-index="11" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-718r" id="key-6" src="assets/sfx/keyboard/keypress-023.wav" data-start="1.00" data-duration="0.14" data-track-index="11" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-k0nm" id="key-7" src="assets/sfx/keyboard/keypress-027.wav" data-start="1.15" data-duration="0.14" data-track-index="11" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-uwxr" id="key-8" src="assets/sfx/keyboard/keypress-031.wav" data-start="1.30" data-duration="0.14" data-track-index="11" data-volume="0.55"></audio>
+
+      <audio data-hf-id="hf-hdgs" id="sfx-stamp" src="assets/sfx/impact/impactSoft_medium_001.ogg" data-start="2.62" data-duration="0.19" data-track-index="13" data-volume="0.8"></audio>
+      <audio data-hf-id="hf-u982" id="sfx-name" src="assets/sfx/impact/impactSoft_medium_004.ogg" data-start="3.68" data-duration="0.15" data-track-index="13" data-volume="0.75"></audio>
+      <audio data-hf-id="hf-jx66" id="sfx-strike" src="assets/sfx/interface/switch_002.ogg" data-start="8.28" data-duration="0.5" data-track-index="13" data-volume="0.6"></audio>
+      <audio data-hf-id="hf-1q98" id="sfx-card-1" src="assets/sfx/casino/card-slide-1.ogg" data-start="8.94" data-duration="0.6" data-track-index="14" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-waqc" id="sfx-card-3" src="assets/sfx/casino/card-slide-1.ogg" data-start="9.99" data-duration="0.6" data-track-index="14" data-volume="0.55"></audio>
+      <audio data-hf-id="hf-7fi5" id="sfx-traction" src="assets/sfx/impact/impactSoft_medium_001.ogg" data-start="12.63" data-duration="0.19" data-track-index="13" data-volume="0.75"></audio>
+      <audio data-hf-id="hf-oe43" id="sfx-stat-1" src="assets/sfx/casino/chip-lay-1.ogg" data-start="13.16" data-duration="0.18" data-track-index="14" data-volume="0.5"></audio>
+      <audio data-hf-id="hf-252v" id="sfx-stat-3" src="assets/sfx/casino/chip-lay-1.ogg" data-start="14.20" data-duration="0.18" data-track-index="14" data-volume="0.5"></audio>
+      <audio data-hf-id="hf-vv8e" id="sfx-raise" src="assets/sfx/interface/click_003.ogg" data-start="19.18" data-duration="0.01" data-track-index="13" data-volume="0.6"></audio>
+      <audio data-hf-id="hf-aleo" id="sfx-bell" src="assets/sfx/impact/impactBell_heavy_000.ogg" data-start="21.05" data-duration="1.48" data-track-index="15" data-volume="0.7"></audio>
+    </div>
+
+    <script>
+      // ---- build the typed hook as per-character spans (words stay unbroken) ----
+      const HOOK = "Today, we're thrilled to announce our Series A.";
+      const lineEl = document.getElementById("s1-line");
+      const chars = [];
+      HOOK.split(" ").forEach((word, wi, arr) => {
+        const w = document.createElement("span");
+        w.className = "w";
+        for (const ch of word) {
+          const c = document.createElement("span");
+          c.textContent = ch;
+          c.style.opacity = "0";
+          w.appendChild(c);
+          chars.push(c);
+        }
+        lineEl.appendChild(w);
+        if (wi < arr.length - 1) lineEl.appendChild(document.createTextNode(" "));
+      });
+
+      const tl = gsap.timeline({ paused: true });
+
+      // ---- audio-reactive background: music RMS breathes the mesh glow ----
+      const AD = window.AUDIO_DATA;
+      for (let f = 0; f < AD.totalFrames; f++) {
+        const r = AD.frames[f].r, b = AD.frames[f].b;
+        tl.set("#blob-a", { opacity: 0.55 + r * 0.45, scale: 1 + b * 0.06 }, f / AD.fps);
+        tl.set("#blob-b", { opacity: 0.45 + r * 0.4 }, f / AD.fps);
+        // badge dot glow during the hero scene only
+        if (f / AD.fps >= 3.6 && f / AD.fps < 7) {
+          tl.set("#s2-dot", { boxShadow: `0 0 ${8 + r * 26}px rgba(0,128,255,${0.5 + r * 0.5})` }, f / AD.fps);
+        }
+      }
+
+      // ---- S1: press release (0 – 3.6) ----
+      tl.fromTo("#s1-dateline", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 0.05);
+      const typeStart = 0.25, typeEnd = 1.45;
+      chars.forEach((c, i) => tl.set(c, { opacity: 1 }, typeStart + (i / chars.length) * (typeEnd - typeStart)));
+      tl.fromTo("#s1-stamp", { opacity: 0, scale: 1.6, rotation: -4 }, { opacity: 1, scale: 1, rotation: -4, duration: 0.22, ease: "power4.in" }, 2.45);
+
+      // ---- S2: hero (3.6 – 7.0) ----
+      tl.fromTo("#s2-pill", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 3.6);
+      // beat-locked: 3.70s
+      tl.fromTo("#s2-name", { opacity: 0, scale: 1.14, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "power3.out" }, 3.7);
+      tl.fromTo("#s2-title", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 4.0);
+      tl.fromTo("#s2-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 4.3);
+
+      // ---- S3: pitch (7.0 – 12.4) ----
+      tl.fromTo("#s3 .corner", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 7.0);
+      tl.fromTo("#s3-head", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 7.05);
+      tl.fromTo("#s3-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.25, ease: "power2.inOut" }, 8.3);
+      tl.fromTo("#s3-cards", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 8.9);
+      // beat-grid: card 1 at 8.96s, card 2 at 9.50s, card 3 at 10.01s — then all three hold to 12.4s
+      [["#c1", 8.96], ["#c2", 9.5], ["#c3", 10.01]].forEach(([sel, t]) => {
+        tl.fromTo(sel, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, t);
+      });
+
+      // ---- S4: traction (12.4 – 15.8) ----
+      tl.fromTo("#s4 .corner", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 12.4);
+      tl.fromTo("#s4-line", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 2.8, ease: "power2.in" }, 12.45);
+      // beat-locked: 12.65s
+      tl.fromTo("#s4-title", { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, 12.65);
+      // beat-grid: stat 1 at 13.18s, stat 2 at 13.70s, stat 3 at 14.22s — then hold to 15.8s
+      const stats = [["#st1", "#v1", 6, "+", 13.18], ["#st2", "#v2", 50, "+", 13.7], ["#st3", "#v3", 100, "%", 14.22]];
+      stats.forEach(([card, val, target, suffix, t]) => {
+        tl.fromTo(card, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, t);
+        const counter = { n: 0 };
+        const el = document.querySelector(val);
+        tl.fromTo(counter, { n: 0 }, {
+          n: target, duration: 0.5, ease: "power2.out",
+          onUpdate: () => { el.textContent = Math.round(counter.n) + suffix; },
+        }, t);
+      });
+
+      // ---- S5: quote (15.8 – 19.0) ----
+      tl.fromTo("#s5 .corner", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 15.8);
+      tl.fromTo("#s5-card", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 15.85);
+      tl.fromTo("#s5-attr", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 16.4);
+      tl.to("#s5-card", { opacity: 0, duration: 0.2, ease: "none" }, 18.8);
+
+      // ---- S6: raise → lockup (19.0 – 23.0) ----
+      tl.fromTo("#s6-label", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.25 }, 19.05);
+      tl.fromTo("#s6-amount", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 19.2);
+      tl.to("#s6-raise", { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, 20.75);
+      // beat-grid: lockup at 21.07s (bell)
+      tl.fromTo("#s6-name", { opacity: 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 21.07);
+      tl.fromTo("#s6-title", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 21.3);
+      tl.fromTo("#s6-url", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 21.5);
+      tl.fromTo("#s6-foot", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 21.6);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2 @@
+Today, we're thrilled to announce our Series A. Team size: 1. Handoffs: 0.
+I design SaaS interfaces in Figma and ship them as production React myself — no handoff, no delays. Now raising: your next MVP.

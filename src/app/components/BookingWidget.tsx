@@ -13,13 +13,13 @@ const CAL_NAMESPACE = "booking";
 
 const BRAND = {
   bg: "#0A0E1A",
-  surface: "#0C1220",
-  surfaceRaised: "#141828",
-  border: "rgba(255,255,255,0.08)",
-  borderStrong: "rgba(255,255,255,0.16)",
+  surface: "#101624",
+  surfaceRaised: "#12182A",
+  border: "rgba(255,255,255,0.1)",
+  borderStrong: "rgba(255,255,255,0.22)",
   accent: "#0080FF",
-  text: "#F5F7FA",
-  textMuted: "#8A93A6",
+  text: "#F4F7FB",
+  textMuted: "#9AA3B5",
 };
 
 type BookingWidgetProps = {
@@ -63,7 +63,7 @@ export function BookingWidget({ calLink = CAL_LINK }: BookingWidgetProps) {
             "cal-border-subtle": BRAND.border,
             "cal-border-emphasis": BRAND.borderStrong,
             "cal-text": BRAND.text,
-            "cal-text-emphasis": "#ffffff",
+            "cal-text-emphasis": BRAND.text,
             "cal-text-subtle": BRAND.textMuted,
           },
           light: {},
@@ -119,7 +119,7 @@ export function BookingWidget({ calLink = CAL_LINK }: BookingWidgetProps) {
             style={{
               color: BRAND.textMuted,
               fontSize: "0.875rem",
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "DM Sans, sans-serif",
               margin: 0,
             }}
           >
@@ -170,7 +170,7 @@ function BookingUnavailable() {
           width: "44px",
           height: "44px",
           borderRadius: "12px",
-          background: "rgba(0,128,255,0.12)",
+          background: "rgba(196,69,26,0.1)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -182,9 +182,9 @@ function BookingUnavailable() {
 
       <h3
         style={{
-          fontFamily: "'Syne', sans-serif",
+          fontFamily: "Syne, sans-serif",
           fontWeight: 700,
-          color: "#ffffff",
+          color: BRAND.text,
           fontSize: "1.05rem",
           margin: "0 0 10px",
         }}
@@ -197,7 +197,7 @@ function BookingUnavailable() {
           color: BRAND.textMuted,
           fontSize: "0.9rem",
           lineHeight: 1.7,
-          fontFamily: "'DM Sans', sans-serif",
+          fontFamily: "DM Sans, sans-serif",
           margin: "0 0 24px",
           maxWidth: "380px",
         }}
@@ -213,13 +213,13 @@ function BookingUnavailable() {
           alignItems: "center",
           gap: "8px",
           background: BRAND.accent,
-          color: "#0A0E1A",
+          color: "#fff8f3",
           borderRadius: "12px",
           padding: "13px 28px",
           fontSize: "0.9rem",
           fontWeight: 700,
           textDecoration: "none",
-          fontFamily: "'DM Sans', sans-serif",
+          fontFamily: "DM Sans, sans-serif",
         }}
       >
         <Mail size={16} aria-hidden="true" />

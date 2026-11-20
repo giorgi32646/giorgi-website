@@ -2,29 +2,29 @@
 
 :root {
   --font-size: 16px;
-  --background: #0A0E1A;
-  --foreground: #F5F7FA;
-  --card: #0C1220;
-  --card-foreground: #F5F7FA;
-  --popover: #0C1220;
-  --popover-foreground: #F5F7FA;
-  --primary: #0080FF;
+  --background: #0a0e1a;
+  --foreground: #f4f7fb;
+  --card: #101624;
+  --card-foreground: #f4f7fb;
+  --popover: #101624;
+  --popover-foreground: #f4f7fb;
+  --primary: #0080ff;
   --primary-foreground: #ffffff;
-  --secondary: #141828;
-  --secondary-foreground: #F5F7FA;
-  --muted: #141828;
-  --muted-foreground: #8A93A6;
-  --accent: #1A2240;
-  --accent-foreground: #F5F7FA;
-  --destructive: #d4183d;
+  --secondary: #12182a;
+  --secondary-foreground: #f4f7fb;
+  --muted: #12182a;
+  --muted-foreground: #9aa3b5;
+  --accent: #12182a;
+  --accent-foreground: #f4f7fb;
+  --destructive: #e11d48;
   --destructive-foreground: #ffffff;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.04);
-  --input-background: rgba(255, 255, 255, 0.04);
-  --switch-background: #2A3555;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --input-background: transparent;
+  --switch-background: #243049;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #0080FF;
+  --ring: #0080ff;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -33,12 +33,12 @@
   --radius: 0.625rem;
   --sidebar: #0C1220;
   --sidebar-foreground: #F5F7FA;
-  --sidebar-primary: #0080FF;
+  --sidebar-primary: #0080ff;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #141828;
   --sidebar-accent-foreground: #F5F7FA;
   --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #0080FF;
+  --sidebar-ring: #0080ff;
 }
 
 .dark {
@@ -127,30 +127,20 @@
 
   body {
     @apply bg-background text-foreground;
-    overflow-x: hidden;
     min-height: 100vh;
-    cursor: none;
+    font-family: "DM Sans", sans-serif;
+    background: #0a0e1a;
   }
 
   html, body, #root {
-    background: #0A0E1A;
+    background-color: #0a0e1a;
+    color: #f4f7fb;
   }
 
-  /* Hide cursor on all elements so the glass circle is the only cursor */
-  *, *::before, *::after {
-    cursor: none !important;
-  }
-
-  /* Restore on touch/coarse devices */
-  @media (pointer: coarse) {
-    body, *, *::before, *::after { cursor: auto !important; }
-  }
-
-  /* Global focus-visible ring in Electric Blue */
   :focus-visible {
-    outline: 2px solid #0080FF;
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline: 2px solid #0080ff;
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 
   /* Remove focus ring for mouse users (kept for keyboard) */
@@ -165,7 +155,7 @@
 
   /* Placeholder text color */
   ::placeholder {
-    color: #4A5568;
+    color: #6d778c;
     opacity: 1;
   }
 

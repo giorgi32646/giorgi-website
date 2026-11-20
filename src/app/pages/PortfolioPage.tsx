@@ -51,9 +51,9 @@ const FADE_UP = {
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <p style={{
-      color: "#0080FF", fontSize: "0.75rem", fontWeight: 600,
+      color: "var(--accent)", fontSize: "0.75rem", fontWeight: 600,
       letterSpacing: "0.18em", textTransform: "uppercase",
-      fontFamily: "'DM Sans', sans-serif", marginBottom: "12px",
+      fontFamily: "var(--font-body)", marginBottom: "12px",
     }}>
       {children}
     </p>
@@ -63,7 +63,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function SectionHeading({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <h2 id={id} style={{
-      fontFamily: "'Syne', sans-serif", fontWeight: 800, color: "#ffffff",
+      fontFamily: "var(--font-display)", fontWeight: 800, color: "var(--ink)",
       fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)", letterSpacing: "-0.02em",
       lineHeight: 1.15, margin: "0 0 40px 0",
     }}>
@@ -76,12 +76,12 @@ function CategoryPill({ label }: { label: string }) {
   return (
     <span style={{
       display: "inline-block",
-      background: "rgba(0,128,255,0.08)",
-      border: "1px solid rgba(0,128,255,0.25)",
-      color: "#4DA6FF",
+      background: "transparent",
+      border: "1px solid var(--line)",
+      color: "var(--accent)",
       fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em",
       textTransform: "uppercase", padding: "3px 10px",
-      borderRadius: "6px", fontFamily: "'DM Sans', sans-serif",
+      borderRadius: "6px", fontFamily: "var(--font-body)",
       whiteSpace: "nowrap",
     }}>
       {label}
@@ -92,10 +92,10 @@ function CategoryPill({ label }: { label: string }) {
 function TechPill({ label }: { label: string }) {
   return (
     <span style={{
-      background: "rgba(255,255,255,0.06)",
-      border: "1px solid rgba(255,255,255,0.1)",
-      color: "#8A93A6", fontSize: "0.75rem",
-      fontFamily: "'DM Sans', sans-serif",
+      background: "transparent",
+      border: "1px solid var(--line)",
+      color: "var(--muted)", fontSize: "0.75rem",
+      fontFamily: "var(--font-body)",
       padding: "4px 10px", borderRadius: "6px", whiteSpace: "nowrap",
     }}>
       {label}
@@ -106,11 +106,11 @@ function TechPill({ label }: { label: string }) {
 function OwnProductBadge() {
   return (
     <span style={{
-      background: "rgba(77,166,255,0.12)", color: "#4DA6FF",
+      background: "transparent", color: "var(--accent)",
       fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em",
       textTransform: "uppercase", padding: "3px 9px", borderRadius: "6px",
-      fontFamily: "'DM Sans', sans-serif", whiteSpace: "nowrap",
-      border: "1px solid rgba(77,166,255,0.2)",
+      fontFamily: "var(--font-body)", whiteSpace: "nowrap",
+      border: "1px solid var(--line)",
     }}>
       Own Product
     </span>
@@ -149,10 +149,10 @@ function ThumbnailArea({ project }: { project: PortfolioProject }) {
           }} />
           <div style={{
             position: "absolute", width: "60%", height: "60%",
-            background: "radial-gradient(circle, rgba(0,128,255,0.12) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(196,69,26,0.12) 0%, transparent 70%)",
             borderRadius: "50%",
           }} />
-          {Icon && <Icon size={36} color="rgba(0,128,255,0.55)" strokeWidth={1.5} />}
+          {Icon && <Icon size={36} color="rgba(196,69,26,0.7)" strokeWidth={1.5} />}
         </>
       )}
     </div>
@@ -250,7 +250,7 @@ function ProjectModal({
             aria-hidden="true"
             style={{
               position: "fixed", inset: 0, zIndex: 100,
-              background: "rgba(4,6,16,0.8)",
+              background: "rgba(28,23,20,0.46)",
               backdropFilter: "blur(8px)",
               WebkitBackdropFilter: "blur(8px)",
             }}
@@ -282,15 +282,12 @@ function ProjectModal({
               style={{
                 position: "relative",
                 marginTop: "auto", marginBottom: "auto",
-                width: "100%", maxWidth: "min(1200px, calc(100vw - 300px))",
-                background: "rgba(6,9,20,0.98)",
-                backdropFilter: "blur(40px)",
-                WebkitBackdropFilter: "blur(40px)",
-                border: "1px solid rgba(0,128,255,0.18)",
-                borderTop: "1px solid rgba(0,128,255,0.4)",
-                borderRadius: "18px",
+                width: "100%", maxWidth: "920px",
+                background: "var(--cream)",
+                border: "1px solid var(--line)",
+                borderRadius: "2px",
                 padding: "clamp(24px, 4vw, 36px)",
-                boxShadow: "0 0 80px rgba(0,128,255,0.07), 0 40px 100px rgba(0,0,0,0.7)",
+                boxShadow: "0 24px 60px rgba(28,23,20,0.16)",
               }}
             >
               {/* Close button */}
@@ -299,18 +296,18 @@ function ProjectModal({
                 aria-label="Close modal"
                 style={{
                   position: "absolute", top: "20px", right: "20px",
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.12)",
+                  background: "transparent",
+                  border: "1px solid var(--line)",
                   borderRadius: "10px", width: "38px", height: "38px",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "#6A7590", transition: "background 0.15s, color 0.15s",
+                  color: "var(--muted)", transition: "background 0.15s, color 0.15s",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.1)";
-                  (e.currentTarget as HTMLElement).style.color = "#fff";
+                  (e.currentTarget as HTMLElement).style.background = "var(--paper-deep)";
+                  (e.currentTarget as HTMLElement).style.color = "#1c1714";
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
+                  (e.currentTarget as HTMLElement).style.background = "transparent";
                   (e.currentTarget as HTMLElement).style.color = "#6A7590";
                 }}
               >
@@ -325,7 +322,7 @@ function ProjectModal({
                   <span style={{
                     fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.1em",
                     textTransform: "uppercase", padding: "3px 8px", borderRadius: "5px",
-                    fontFamily: "'DM Sans', sans-serif", whiteSpace: "nowrap",
+                    fontFamily: "var(--font-body)", whiteSpace: "nowrap",
                     color: project.statusBadge.color,
                     background: project.statusBadge.bg,
                     border: `1px solid ${project.statusBadge.border}`,
@@ -334,7 +331,7 @@ function ProjectModal({
                   </span>
                 )}
                 {project.year && (
-                  <span style={{ color: "#3D4A62", fontSize: "0.8rem", fontFamily: "'DM Sans', sans-serif" }}>
+                  <span style={{ color: "var(--faint)", fontSize: "0.8rem", fontFamily: "var(--font-body)" }}>
                     {project.year}
                   </span>
                 )}
@@ -344,8 +341,8 @@ function ProjectModal({
               <h2
                 id="modal-title"
                 style={{
-                  fontFamily: "'Syne', sans-serif", fontWeight: 800,
-                  color: "#ffffff", fontSize: "clamp(1.7rem, 4vw, 2.1rem)",
+                  fontFamily: "var(--font-display)", fontWeight: 800,
+                  color: "var(--ink)", fontSize: "clamp(1.7rem, 4vw, 2.1rem)",
                   letterSpacing: "-0.03em", lineHeight: 1.08,
                   margin: "0 0 20px 0", paddingRight: "44px",
                 }}
@@ -354,15 +351,15 @@ function ProjectModal({
               </h2>
 
               {/* Divider */}
-              <div style={{ height: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "20px" }} />
+              <div style={{ height: "1px", background: "var(--line)", marginBottom: "20px" }} />
 
               {/* Full description */}
               <div style={{ marginBottom: "28px" }}>
                 {project.fullDescription.map((para, i) => (
                   <p key={i} style={{
-                    color: i === 0 ? "#C8D0E0" : "#8A93A6",
+                    color: i === 0 ? "var(--ink-soft)" : "var(--muted)",
                     fontSize: "0.9375rem", lineHeight: 1.78,
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "var(--font-body)",
                     marginBottom: i < project.fullDescription.length - 1 ? "14px" : 0,
                   }}>
                     {para}
@@ -373,9 +370,9 @@ function ProjectModal({
               {/* Tech stack */}
               <div style={{ marginBottom: project.highlights ? "24px" : "28px" }}>
                 <p style={{
-                  color: "#3D5070", fontSize: "0.68rem", fontWeight: 700,
+                  color: "var(--faint)", fontSize: "0.68rem", fontWeight: 700,
                   letterSpacing: "0.16em", textTransform: "uppercase",
-                  fontFamily: "'DM Sans', sans-serif", marginBottom: "10px",
+                  fontFamily: "var(--font-body)", marginBottom: "10px",
                 }}>
                   Tools &amp; Tech
                 </p>
@@ -388,9 +385,9 @@ function ProjectModal({
               {project.highlights && (
                 <div style={{ marginBottom: "28px" }}>
                   <p style={{
-                    color: "#3D5070", fontSize: "0.68rem", fontWeight: 700,
+                    color: "var(--faint)", fontSize: "0.68rem", fontWeight: 700,
                     letterSpacing: "0.16em", textTransform: "uppercase",
-                    fontFamily: "'DM Sans', sans-serif", marginBottom: "12px",
+                    fontFamily: "var(--font-body)", marginBottom: "12px",
                   }}>
                     Key Highlights
                   </p>
@@ -400,16 +397,16 @@ function ProjectModal({
                         <div style={{
                           flexShrink: 0, marginTop: "3px",
                           width: "16px", height: "16px",
-                          background: "rgba(0,128,255,0.14)",
-                          border: "1px solid rgba(0,128,255,0.3)",
+                          background: "transparent",
+                          border: "1px solid var(--accent)",
                           borderRadius: "4px", display: "flex",
                           alignItems: "center", justifyContent: "center",
                         }}>
-                          <Check size={10} color="#4DA6FF" strokeWidth={2.5} />
+                          <Check size={10} color="var(--accent)" strokeWidth={2.5} />
                         </div>
                         <span style={{
-                          color: "#B8C4D8", fontSize: "0.875rem",
-                          lineHeight: 1.6, fontFamily: "'DM Sans', sans-serif",
+                          color: "var(--ink-soft)", fontSize: "0.875rem",
+                          lineHeight: 1.6, fontFamily: "var(--font-body)",
                         }}>
                           {item}
                         </span>
@@ -421,7 +418,7 @@ function ProjectModal({
 
               {/* CTA */}
               <div style={{
-                borderTop: "1px solid rgba(255,255,255,0.06)",
+                borderTop: "1px solid var(--line)",
                 paddingTop: "22px",
                 display: "flex", alignItems: "center", justifyContent: "space-between",
                 flexWrap: "wrap", gap: "12px",
@@ -434,8 +431,8 @@ function ProjectModal({
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5"
                       style={{
-                        color: "#5A6A8A", fontSize: "0.825rem", fontWeight: 600,
-                        textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
+                        color: "var(--muted)", fontSize: "0.825rem", fontWeight: 600,
+                        textDecoration: "none", fontFamily: "var(--font-body)",
                       }}
                     >
                       View on Behance <ArrowUpRight size={13} aria-hidden="true" />
@@ -443,8 +440,8 @@ function ProjectModal({
                   )}
                 </div>
                 <p style={{
-                  color: "#6A7590", fontSize: "0.875rem",
-                  fontFamily: "'DM Sans', sans-serif", margin: 0,
+                  color: "var(--muted)", fontSize: "0.875rem",
+                  fontFamily: "var(--font-body)", margin: 0,
                 }}>
                   Interested in something similar?
                 </p>
@@ -452,8 +449,8 @@ function ProjectModal({
                   href="mailto:thegiorgilortki@gmail.com"
                   className="inline-flex items-center gap-1.5"
                   style={{
-                    color: "#0080FF", fontSize: "0.875rem", fontWeight: 600,
-                    textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
+                    color: "var(--accent)", fontSize: "0.875rem", fontWeight: 600,
+                    textDecoration: "none", fontFamily: "var(--font-body)",
                   }}
                 >
                   Get in touch <ArrowUpRight size={15} aria-hidden="true" />
@@ -507,15 +504,11 @@ function PortfolioCard({
       onHoverEnd={() => setHovered(false)}
       whileHover={{ scale: 1.02, y: -4, transition: { duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] } }}
       style={{
-        background: "rgba(255,255,255,0.05)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-        border: `1px solid ${hovered ? "rgba(0,128,255,0.3)" : "rgba(255,255,255,0.1)"}`,
-        borderRadius: "16px",
+        background: "var(--cream)",
+        border: `1px solid ${hovered ? "var(--ink)" : "var(--line)"}`,
+        borderRadius: "2px",
         padding: "24px",
-        boxShadow: hovered
-          ? "0 0 28px rgba(0,128,255,0.1), 0 8px 32px rgba(0,0,0,0.4)"
-          : "0 2px 16px rgba(0,0,0,0.2)",
+        boxShadow: hovered ? "0 10px 28px rgba(28,23,20,0.08)" : "none",
         transition: "border-color 0.25s ease, box-shadow 0.25s ease",
         display: "flex", flexDirection: "column",
         position: "relative", overflow: "hidden",
@@ -530,7 +523,7 @@ function PortfolioCard({
           <span style={{
             fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.1em",
             textTransform: "uppercase", padding: "3px 8px", borderRadius: "5px",
-            fontFamily: "'DM Sans', sans-serif", whiteSpace: "nowrap",
+            fontFamily: "var(--font-body)", whiteSpace: "nowrap",
             color: project.statusBadge.color,
             background: project.statusBadge.bg,
             border: `1px solid ${project.statusBadge.border}`,
@@ -542,8 +535,8 @@ function PortfolioCard({
 
       {/* Title */}
       <h3 style={{
-        fontFamily: "'Syne', sans-serif", fontWeight: 700,
-        color: "#ffffff", fontSize: "1.125rem",
+        fontFamily: "var(--font-display)", fontWeight: 700,
+        color: "var(--ink)", fontSize: "1.125rem",
         letterSpacing: "-0.01em", margin: "0 0 8px 0", lineHeight: 1.3,
       }}>
         {project.title}
@@ -551,8 +544,8 @@ function PortfolioCard({
 
       {/* Description */}
       <p style={{
-        color: "#8A93A6", fontSize: "0.875rem", lineHeight: 1.65,
-        fontFamily: "'DM Sans', sans-serif", margin: 0, flex: 1,
+        color: "var(--muted)", fontSize: "0.875rem", lineHeight: 1.65,
+        fontFamily: "var(--font-body)", margin: 0, flex: 1,
       }}>
         {project.shortDescription}
       </p>
@@ -564,8 +557,8 @@ function PortfolioCard({
         aria-hidden="true"
         style={{
           position: "absolute", bottom: "16px", right: "16px",
-          fontSize: "0.7rem", color: "rgba(0,128,255,0.8)",
-          fontFamily: "'DM Sans', sans-serif", fontWeight: 600,
+          fontSize: "0.7rem", color: "var(--accent)",
+          fontFamily: "var(--font-body)", fontWeight: 600,
           letterSpacing: "0.04em", pointerEvents: "none",
         }}
       >
@@ -613,15 +606,11 @@ function FeaturedCard({
       onHoverEnd={() => setHovered(false)}
       whileHover={{ scale: 1.01, y: -3, transition: { duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] } }}
       style={{
-        background: "rgba(255,255,255,0.05)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
-        border: `1px solid ${hovered ? "rgba(0,128,255,0.35)" : "rgba(255,255,255,0.1)"}`,
-        borderRadius: "20px",
+        background: "var(--cream)",
+        border: `1px solid ${hovered ? "var(--ink)" : "var(--line)"}`,
+        borderRadius: "2px",
         padding: "clamp(24px, 5vw, 40px)",
-        boxShadow: hovered
-          ? "0 0 40px rgba(0,128,255,0.12), 0 12px 40px rgba(0,0,0,0.5)"
-          : "0 4px 24px rgba(0,0,0,0.25)",
+        boxShadow: hovered ? "0 12px 32px rgba(28,23,20,0.08)" : "none",
         transition: "border-color 0.25s ease, box-shadow 0.25s ease",
         display: "grid",
         gridTemplateColumns: "1fr",
@@ -635,10 +624,10 @@ function FeaturedCard({
         <div>
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span style={{
-              background: "rgba(0,128,255,0.15)", color: "#0080FF",
+              background: "transparent", color: "var(--accent)", border: "1px solid var(--accent)",
               fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.12em",
               textTransform: "uppercase", padding: "4px 10px", borderRadius: "6px",
-              fontFamily: "'DM Sans', sans-serif", whiteSpace: "nowrap",
+              fontFamily: "var(--font-body)", whiteSpace: "nowrap",
             }}>
               Featured
             </span>
@@ -647,31 +636,31 @@ function FeaturedCard({
               background: "rgba(255,160,0,0.1)", color: "#F5A623",
               fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.1em",
               textTransform: "uppercase", padding: "3px 9px", borderRadius: "6px",
-              fontFamily: "'DM Sans', sans-serif", whiteSpace: "nowrap",
+              fontFamily: "var(--font-body)", whiteSpace: "nowrap",
               border: "1px solid rgba(255,160,0,0.25)",
             }}>
               In Development
             </span>
             {project.year && (
-              <span style={{ color: "#4A5568", fontSize: "0.8rem", fontFamily: "'DM Sans', sans-serif" }}>
+              <span style={{ color: "var(--faint)", fontSize: "0.8rem", fontFamily: "var(--font-body)" }}>
                 {project.year}
               </span>
             )}
           </div>
 
           <h3 style={{
-            fontFamily: "'Syne', sans-serif", fontWeight: 800,
-            color: "#ffffff", fontSize: "clamp(1.5rem, 3.5vw, 2rem)",
+            fontFamily: "var(--font-display)", fontWeight: 800,
+            color: "var(--ink)", fontSize: "clamp(1.5rem, 3.5vw, 2rem)",
             letterSpacing: "-0.025em", margin: "0 0 6px 0", lineHeight: 1.1,
           }}>
             {project.title}
           </h3>
-          <p style={{ color: "#0080FF", fontSize: "0.8rem", fontFamily: "'DM Sans', sans-serif", marginBottom: "14px" }}>
+          <p style={{ color: "var(--accent)", fontSize: "0.8rem", fontFamily: "var(--font-body)", marginBottom: "14px" }}>
             {project.category}
           </p>
           <p style={{
-            color: "#8A93A6", fontSize: "0.9375rem", lineHeight: 1.7,
-            fontFamily: "'DM Sans', sans-serif", maxWidth: "560px",
+            color: "var(--muted)", fontSize: "0.9375rem", lineHeight: 1.7,
+            fontFamily: "var(--font-body)", maxWidth: "560px",
           }}>
             {project.shortDescription}
           </p>
@@ -694,8 +683,8 @@ function FeaturedCard({
         aria-hidden="true"
         style={{
           position: "absolute", bottom: "20px", right: "24px",
-          fontSize: "0.72rem", color: "rgba(0,128,255,0.8)",
-          fontFamily: "'DM Sans', sans-serif", fontWeight: 600,
+          fontSize: "0.72rem", color: "var(--accent)",
+          fontFamily: "var(--font-body)", fontWeight: 600,
           letterSpacing: "0.04em", pointerEvents: "none",
         }}
       >
@@ -783,7 +772,7 @@ export function PortfolioPage() {
   }, []);
 
   return (
-    <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
+    <div style={{ background: "transparent", paddingTop: "68px" }}>
       <Helmet>
         <title>Portfolio | Giorgi Lortkipanidze</title>
         <meta
@@ -806,8 +795,7 @@ export function PortfolioPage() {
 
       {/* Page header */}
       <div style={{
-        background: "linear-gradient(180deg, rgba(0,128,255,0.04) 0%, transparent 100%)",
-        borderBottom: "1px solid rgba(255,255,255,0.05)",
+        borderBottom: "1px solid var(--line)",
         padding: "64px 0 56px",
       }}>
         <motion.div
@@ -817,22 +805,22 @@ export function PortfolioPage() {
           className="max-w-6xl mx-auto px-4 sm:px-6"
         >
           <p style={{
-            color: "#0080FF", fontSize: "0.75rem", fontWeight: 600,
+            color: "var(--accent)", fontSize: "0.75rem", fontWeight: 600,
             letterSpacing: "0.18em", textTransform: "uppercase",
-            fontFamily: "'DM Sans', sans-serif", marginBottom: "14px",
+            fontFamily: "var(--font-body)", marginBottom: "14px",
           }}>
             All Work
           </p>
           <h1 style={{
-            fontFamily: "'Syne', sans-serif", fontWeight: 800,
-            color: "#ffffff", fontSize: "clamp(2.25rem, 6vw, 4rem)",
+            fontFamily: "var(--font-display)", fontWeight: 800,
+            color: "var(--ink)", fontSize: "clamp(2.25rem, 6vw, 4rem)",
             letterSpacing: "-0.03em", lineHeight: 1.08, margin: "0 0 16px 0",
           }}>
             Portfolio
           </h1>
           <p style={{
-            color: "#8A93A6", fontSize: "1.0625rem",
-            fontFamily: "'DM Sans', sans-serif", lineHeight: 1.65, maxWidth: "520px",
+            color: "var(--muted)", fontSize: "1.0625rem",
+            fontFamily: "var(--font-body)", lineHeight: 1.65, maxWidth: "520px",
           }}>
             SaaS products, UI/UX design, branding, and digital experiences — built and designed in Tbilisi.
           </p>

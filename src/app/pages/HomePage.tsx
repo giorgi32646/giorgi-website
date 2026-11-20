@@ -1,40 +1,38 @@
 import { Helmet } from "react-helmet-async";
 import { HeroSection } from "../components/HeroSection";
-import { TechMarquee } from "../components/TechMarquee";
-import { WhySection } from "../components/WhySection";
 import { WorkSection } from "../components/WorkSection";
+import { ServicesSection } from "../components/ServicesSection";
+import { ApproachSection } from "../components/ApproachSection";
 import { AboutSection } from "../components/AboutSection";
-import { PricingSection } from "../components/PricingSection";
 import { ContactSection } from "../components/ContactSection";
 
 export function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Giorgi Lortkipanidze | SaaS UI/UX Designer & Developer</title>
+        <title>The Giorgi Lortki | Premium Digital Product Studio</title>
         <meta
           name="description"
-          content="Designer-developer building production-ready SaaS interfaces. No handoff, no delays — just shipped UI. Available for freelance work."
+          content="The Giorgi Lortki designs, engineers, and delivers digital products — websites, software, mobile apps, marketplaces, and enterprise systems."
         />
-        <meta property="og:title" content="Giorgi Lortkipanidze | SaaS UI/UX Designer & Developer" />
+        <meta property="og:title" content="The Giorgi Lortki | Premium Digital Studio" />
         <meta
           property="og:description"
-          content="Designer-developer building production-ready SaaS interfaces. No handoff, no delays — just shipped UI. Available for freelance work."
+          content="The Giorgi Lortki is a premium independent digital studio. We design. We build. We elevate. Creative direction, UI/UX, engineering, branding, and AI."
         />
         <meta property="og:url" content="https://www.giorgilortkipanidze.online/" />
-        <meta name="twitter:title" content="Giorgi Lortkipanidze | SaaS UI/UX Designer & Developer" />
+        <meta name="twitter:title" content="The Giorgi Lortki | Premium Digital Studio" />
         <meta
           name="twitter:description"
-          content="Designer-developer building production-ready SaaS interfaces. No handoff, no delays — just shipped UI. Available for freelance work."
+          content="The Giorgi Lortki is a premium independent digital studio. We design. We build. We elevate. Creative direction, UI/UX, engineering, branding, and AI."
         />
         <link rel="canonical" href="https://www.giorgilortkipanidze.online/" />
       </Helmet>
       <HeroSection />
-      <TechMarquee />
-      <WhySection />
       <WorkSection />
+      <ServicesSection />
+      <ApproachSection />
       <AboutSection />
-      <PricingSection />
       <ContactSection />
     </>
   );

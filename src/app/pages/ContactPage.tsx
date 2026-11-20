@@ -4,466 +4,122 @@ import { useNavigate } from "react-router";
 import { ContactSection } from "../components/ContactSection";
 import { Mail, Twitter, Clock, MessageSquare, Zap, Shield, CalendarDays } from "lucide-react";
 
-const FADE_UP = {
-  initial: { opacity: 0, y: 28 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-};
-
 const WHAT_TO_INCLUDE = [
-  {
-    icon: MessageSquare,
-    title: "What you're building",
-    body: "Give me a one-paragraph overview of your product — what it does, who it's for, and what stage it's at.",
-  },
-  {
-    icon: Zap,
-    title: "What you need from me",
-    body: "Design only? Design + code? A UX audit? The clearer you are, the faster I can tell you if I'm the right fit.",
-  },
-  {
-    icon: Clock,
-    title: "Your timeline",
-    body: "When do you need this done? Hard deadlines help me assess fit and prioritize. If you're flexible, say so.",
-  },
-  {
-    icon: Shield,
-    title: "Your budget range",
-    body: "You don't have to commit — just a ballpark. It saves us both time if expectations are aligned from the start.",
-  },
+  { icon: MessageSquare, title: "What you're building", body: "Give me a one-paragraph overview of your product — what it does, who it's for, and what stage it's at." },
+  { icon: Zap, title: "What you need from me", body: "Design only? Design + code? A UX audit? The clearer you are, the faster I can tell you if I'm the right fit." },
+  { icon: Clock, title: "Your timeline", body: "When do you need this done? Hard deadlines help me assess fit and prioritize. If you're flexible, say so." },
+  { icon: Shield, title: "Your budget range", body: "You don't have to commit — just a ballpark. It saves us both time if expectations are aligned from the start." },
 ];
 
 const WAYS_TO_REACH = [
-  {
-    icon: CalendarDays,
-    label: "Book a call",
-    value: "Free 30-min intro",
-    href: "/book",
-    note: "Fastest way to get time on my calendar",
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: "thegiorgilortki@gmail.com",
-    href: "mailto:thegiorgilortki@gmail.com",
-    note: "Best for detailed project inquiries",
-  },
-  {
-    icon: Twitter,
-    label: "X (Twitter)",
-    value: "@Giorgi5926481",
-    href: "https://x.com/Giorgi5926481",
-    note: "Good for quick questions or following along",
-  },
+  { icon: CalendarDays, label: "Book a call", value: "Free 30-min intro", href: "/book", note: "Fastest way to get time on my calendar" },
+  { icon: Mail, label: "Email", value: "thegiorgilortki@gmail.com", href: "mailto:thegiorgilortki@gmail.com", note: "Best for detailed project inquiries" },
+  { icon: Twitter, label: "X (Twitter)", value: "@Giorgi5926481", href: "https://x.com/Giorgi5926481", note: "Good for quick questions or following along" },
 ];
 
 const CONTACT_FAQS = [
-  {
-    q: "How fast do you reply?",
-    a: "Within 24 hours on weekdays. Usually faster. I treat inbound messages seriously — if you've taken the time to write, I'll give you a real reply.",
-  },
-  {
-    q: "What if I'm not ready to start yet?",
-    a: "That's fine. Reach out anyway. Early conversations help me block time for you, and I can give you a rough scope estimate to help with budgeting.",
-  },
-  {
-    q: "Do you do free discovery calls?",
-    a: "Yes. A 30-minute intro call is free. I won't pitch you — we'll just figure out if there's a fit. If there isn't, I'll tell you honestly.",
-  },
-  {
-    q: "Do you work with non-US clients?",
-    a: "Yes. Most of my work is remote and international. I'm comfortable working across time zones — I'll set up async checkpoints that work for both of us.",
-  },
+  { q: "How fast do you reply?", a: "Within 24 hours on weekdays. Usually faster. I treat inbound messages seriously — if you've taken the time to write, I'll give you a real reply." },
+  { q: "What if I'm not ready to start yet?", a: "That's fine. Reach out anyway. Early conversations help me block time for you, and I can give you a rough scope estimate to help with budgeting." },
+  { q: "Do you do free discovery calls?", a: "Yes. A 30-minute intro call is free. I won't pitch you — we'll just figure out if there's a fit. If there isn't, I'll tell you honestly." },
+  { q: "Do you work with non-US clients?", a: "Yes. Most of my work is remote and international. I'm comfortable working across time zones — I'll set up async checkpoints that work for both of us." },
+];
+
+const AVAILABILITY = [
+  { label: "Response time", value: "< 24h", note: "On weekdays. Usually much faster." },
+  { label: "Availability", value: "5–10h/wk", note: "Alongside product work. Limited slots." },
+  { label: "Time zone", value: "UTC+4", note: "Flexible for async. Overlap with EU & some US hours." },
 ];
 
 export function ContactPage() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
+    <div style={{ paddingTop: "72px" }}>
       <Helmet>
         <title>Contact | Giorgi Lortkipanidze</title>
-        <meta
-          name="description"
-          content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4."
-        />
+        <meta name="description" content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4." />
         <meta property="og:title" content="Contact | Giorgi Lortkipanidze" />
-        <meta
-          property="og:description"
-          content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4."
-        />
+        <meta property="og:description" content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4." />
         <meta property="og:url" content="https://www.giorgilortkipanidze.online/contact" />
         <meta name="twitter:title" content="Contact | Giorgi Lortkipanidze" />
-        <meta
-          name="twitter:description"
-          content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4."
-        />
+        <meta name="twitter:description" content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4." />
         <link rel="canonical" href="https://www.giorgilortkipanidze.online/contact" />
       </Helmet>
 
       <ContactSection />
 
-      {/* What to include */}
-      <section style={{ background: "#0A0E1A", padding: "0 0 80px" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <motion.div {...FADE_UP} transition={{ duration: 0.55 }} style={{ marginBottom: "40px" }}>
-            <p
-              style={{
-                color: "#0080FF",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "12px",
-              }}
-            >
-              Tips
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontWeight: 800,
-                color: "#ffffff",
-                fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-                margin: 0,
-              }}
-            >
-              What to include in your message
-            </h2>
-            <p
-              style={{
-                color: "#8A93A6",
-                fontSize: "0.95rem",
-                fontFamily: "'DM Sans', sans-serif",
-                marginTop: "12px",
-                maxWidth: "460px",
-              }}
-            >
-              The more context you give, the faster I can respond with something useful.
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 gap-4">
-            {WHAT_TO_INCLUDE.map((item, i) => {
+      <section className="studio-section">
+        <div className="studio-wrap">
+          <p className="kicker">Tips</p>
+          <h2 className="display" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", maxWidth: "16ch" }}>What to include in your message</h2>
+          <p className="lede" style={{ marginTop: "0.75rem", maxWidth: "32rem" }}>The more context you give, the faster I can respond with something useful.</p>
+          <div className="grid md:grid-cols-2" style={{ gap: "1.25rem", marginTop: "1.75rem" }}>
+            {WHAT_TO_INCLUDE.map((item) => {
               const Icon = item.icon;
               return (
-                <motion.div
-                  key={item.title}
-                  {...FADE_UP}
-                  transition={{ duration: 0.5, delay: i * 0.09 }}
-                  style={{
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    borderRadius: "16px",
-                    padding: "24px",
-                    display: "flex",
-                    gap: "16px",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <div
-                    style={{
-                      flexShrink: 0,
-                      width: "36px",
-                      height: "36px",
-                      borderRadius: "10px",
-                      background: "rgba(0,128,255,0.12)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Icon size={17} style={{ color: "#0080FF" }} />
-                  </div>
+                <article key={item.title} style={{ borderTop: "1px solid var(--ink)", paddingTop: "0.9rem", display: "flex", gap: "0.85rem" }}>
+                  <Icon size={18} aria-hidden="true" style={{ color: "var(--accent)", marginTop: 4, flexShrink: 0 }} />
                   <div>
-                    <h3
-                      style={{
-                        fontFamily: "'Syne', sans-serif",
-                        fontWeight: 700,
-                        color: "#ffffff",
-                        fontSize: "0.95rem",
-                        margin: "0 0 7px",
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p
-                      style={{
-                        color: "#8A93A6",
-                        fontSize: "0.875rem",
-                        lineHeight: 1.7,
-                        fontFamily: "'DM Sans', sans-serif",
-                        margin: 0,
-                      }}
-                    >
-                      {item.body}
-                    </p>
+                    <h3 className="display" style={{ fontSize: "1.3rem" }}>{item.title}</h3>
+                    <p className="lede" style={{ marginTop: "0.4rem", fontSize: "0.98rem" }}>{item.body}</p>
                   </div>
-                </motion.div>
+                </article>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Other ways to reach */}
-      <section
-        style={{
-          background: "linear-gradient(180deg, #0A0E1A 0%, #0C1220 50%, #0A0E1A 100%)",
-          padding: "80px 0",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <motion.div {...FADE_UP} transition={{ duration: 0.55 }} style={{ marginBottom: "40px" }}>
-            <p
-              style={{
-                color: "#0080FF",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "12px",
-              }}
-            >
-              Other channels
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontWeight: 800,
-                color: "#ffffff",
-                fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-                margin: 0,
-              }}
-            >
-              Prefer a different way to reach me?
-            </h2>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" style={{ maxWidth: "960px" }}>
-            {WAYS_TO_REACH.map((channel, i) => {
+      <section className="studio-section" style={{ paddingTop: 0 }}>
+        <div className="studio-wrap">
+          <p className="kicker">Other channels</p>
+          <h2 className="display" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", marginBottom: "1.25rem", maxWidth: "14ch" }}>Prefer a different way to reach me?</h2>
+          <div className="grid md:grid-cols-3" style={{ gap: "1rem" }}>
+            {WAYS_TO_REACH.map((channel) => {
               const Icon = channel.icon;
               const isInternal = channel.href.startsWith("/");
               return (
-                <motion.a
+                <a
                   key={channel.label}
                   href={channel.href}
                   target={channel.href.startsWith("http") ? "_blank" : undefined}
                   rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   onClick={isInternal ? (e) => { e.preventDefault(); navigate(channel.href); } : undefined}
-                  {...FADE_UP}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  style={{
-                    display: "block",
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    borderRadius: "16px",
-                    padding: "24px",
-                    textDecoration: "none",
-                    transition: "border-color 0.2s, background 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,128,255,0.3)";
-                    (e.currentTarget as HTMLElement).style.background = "rgba(0,128,255,0.04)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
-                  }}
+                  style={{ textDecoration: "none", color: "inherit", borderTop: "1px solid var(--ink)", paddingTop: "0.9rem" }}
                 >
-                  <div
-                    style={{
-                      width: "36px",
-                      height: "36px",
-                      borderRadius: "10px",
-                      background: "rgba(0,128,255,0.12)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginBottom: "14px",
-                    }}
-                  >
-                    <Icon size={17} style={{ color: "#0080FF" }} />
-                  </div>
-                  <p
-                    style={{
-                      color: "#0080FF",
-                      fontSize: "0.7rem",
-                      fontWeight: 700,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      fontFamily: "'DM Sans', sans-serif",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    {channel.label}
-                  </p>
-                  <p
-                    style={{
-                      color: "#ffffff",
-                      fontSize: "0.9rem",
-                      fontWeight: 600,
-                      fontFamily: "'DM Sans', sans-serif",
-                      marginBottom: "6px",
-                    }}
-                  >
-                    {channel.value}
-                  </p>
-                  <p
-                    style={{
-                      color: "#8A93A6",
-                      fontSize: "0.8rem",
-                      fontFamily: "'DM Sans', sans-serif",
-                      margin: 0,
-                    }}
-                  >
-                    {channel.note}
-                  </p>
-                </motion.a>
+                  <Icon size={16} aria-hidden="true" style={{ color: "var(--accent)" }} />
+                  <p className="kicker" style={{ marginTop: "0.7rem" }}>{channel.label}</p>
+                  <p className="display" style={{ fontSize: "1.25rem" }}>{channel.value}</p>
+                  <p className="lede" style={{ marginTop: "0.35rem", fontSize: "0.92rem" }}>{channel.note}</p>
+                </a>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Availability + response time */}
-      <section style={{ background: "#0A0E1A", padding: "80px 0" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid sm:grid-cols-3 gap-5">
-            {[
-              { label: "Response time", value: "< 24h", note: "On weekdays. Usually much faster." },
-              { label: "Availability", value: "5–10h/wk", note: "Alongside product work. Limited slots." },
-              { label: "Time zone", value: "UTC+4", note: "Flexible for async. Overlap with EU & some US hours." },
-            ].map((item, i) => (
-              <motion.div
-                key={item.label}
-                {...FADE_UP}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "16px",
-                  padding: "28px 24px",
-                  textAlign: "center",
-                }}
-              >
-                <p
-                  style={{
-                    color: "#0080FF",
-                    fontSize: "0.7rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.14em",
-                    textTransform: "uppercase",
-                    fontFamily: "'DM Sans', sans-serif",
-                    marginBottom: "10px",
-                  }}
-                >
-                  {item.label}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Syne', sans-serif",
-                    fontWeight: 800,
-                    color: "#ffffff",
-                    fontSize: "1.75rem",
-                    letterSpacing: "-0.02em",
-                    lineHeight: 1,
-                    marginBottom: "8px",
-                  }}
-                >
-                  {item.value}
-                </p>
-                <p
-                  style={{
-                    color: "#8A93A6",
-                    fontSize: "0.8rem",
-                    fontFamily: "'DM Sans', sans-serif",
-                    margin: 0,
-                    lineHeight: 1.5,
-                  }}
-                >
-                  {item.note}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+      <section className="studio-section" style={{ paddingTop: 0 }}>
+        <div className="studio-wrap grid md:grid-cols-3" style={{ gap: 0, borderTop: "1px solid var(--line)" }}>
+          {AVAILABILITY.map((item) => (
+            <div key={item.label} style={{ padding: "1.25rem 1.25rem 1.25rem 0", borderBottom: "1px solid var(--line)" }}>
+              <p className="kicker">{item.label}</p>
+              <p className="display" style={{ fontSize: "2.2rem" }}>{item.value}</p>
+              <p className="lede" style={{ marginTop: "0.4rem", fontSize: "0.92rem" }}>{item.note}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Mini FAQ */}
-      <section style={{ background: "#0A0E1A", padding: "0 0 112px" }}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <motion.div {...FADE_UP} transition={{ duration: 0.55 }} style={{ marginBottom: "40px" }}>
-            <p
-              style={{
-                color: "#0080FF",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "12px",
-              }}
-            >
-              FAQ
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontWeight: 800,
-                color: "#ffffff",
-                fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-                margin: 0,
-              }}
-            >
-              Before you reach out
-            </h2>
-          </motion.div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-            {CONTACT_FAQS.map((faq, i) => (
-              <motion.div
-                key={faq.q}
-                {...FADE_UP}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                style={{
-                  padding: "24px 0",
-                  borderBottom: i < CONTACT_FAQS.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
-                }}
-              >
-                <h3
-                  style={{
-                    fontFamily: "'Syne', sans-serif",
-                    fontWeight: 700,
-                    color: "#ffffff",
-                    fontSize: "0.975rem",
-                    margin: "0 0 10px",
-                  }}
-                >
-                  {faq.q}
-                </h3>
-                <p
-                  style={{
-                    color: "#8A93A6",
-                    fontSize: "0.9rem",
-                    lineHeight: 1.75,
-                    fontFamily: "'DM Sans', sans-serif",
-                    margin: 0,
-                  }}
-                >
-                  {faq.a}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+      <section className="studio-section" style={{ paddingTop: 0 }}>
+        <div className="studio-wrap" style={{ maxWidth: 760 }}>
+          <p className="kicker">FAQ</p>
+          <h2 className="display" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", marginBottom: "1rem" }}>Before you reach out</h2>
+          {CONTACT_FAQS.map((faq) => (
+            <motion.article key={faq.q} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ padding: "1.15rem 0", borderBottom: "1px solid var(--line)" }}>
+              <h3 className="display" style={{ fontSize: "1.25rem" }}>{faq.q}</h3>
+              <p className="lede" style={{ marginTop: "0.45rem", fontSize: "1rem" }}>{faq.a}</p>
+            </motion.article>
+          ))}
         </div>
       </section>
     </div>

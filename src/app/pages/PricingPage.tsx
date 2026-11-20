@@ -5,144 +5,56 @@ import { PricingSection } from "../components/PricingSection";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-const FADE_UP = {
-  initial: { opacity: 0, y: 28 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-};
-
 const PROCESS = [
-  {
-    step: "01",
-    title: "Discovery call",
-    description:
-      "A 30–45 minute call to understand your product, goals, and constraints. I'll ask about your users, your current design/tech stack, and what success looks like for this engagement.",
-  },
-  {
-    step: "02",
-    title: "Proposal & SOW",
-    description:
-      "Within 48 hours I send a detailed Statement of Work — scope, deliverables, timeline, milestones, and payment schedule. No ambiguity. You know exactly what you're getting.",
-  },
-  {
-    step: "03",
-    title: "Kick-off & alignment",
-    description:
-      "We sign the NDA + contract, you pay the first milestone, and we kick off. I'll share my workflow, communication cadence, and where you'll see progress updates.",
-  },
-  {
-    step: "04",
-    title: "Design & build",
-    description:
-      "I work async, sharing progress at each milestone. You review, give feedback, and I iterate. For MVP builds, design and code are developed in parallel — not sequentially.",
-  },
-  {
-    step: "05",
-    title: "Handoff & support",
-    description:
-      "Delivery includes a full Figma handoff (if applicable), clean GitHub PR, documentation, and 30 days of post-launch support for bug fixes.",
-  },
+  { step: "01", title: "Discovery call", description: "A 30–45 minute call to understand your product, goals, and constraints. I'll ask about your users, your current design/tech stack, and what success looks like for this engagement." },
+  { step: "02", title: "Proposal & SOW", description: "Within 48 hours I send a detailed Statement of Work — scope, deliverables, timeline, milestones, and payment schedule. No ambiguity. You know exactly what you're getting." },
+  { step: "03", title: "Kick-off & alignment", description: "We sign the NDA + contract, you pay the first milestone, and we kick off. I'll share my workflow, communication cadence, and where you'll see progress updates." },
+  { step: "04", title: "Design & build", description: "I work async, sharing progress at each milestone. You review, give feedback, and I iterate. For MVP builds, design and code are developed in parallel — not sequentially." },
+  { step: "05", title: "Handoff & support", description: "Delivery includes a full Figma handoff (if applicable), clean GitHub PR, documentation, and 30 days of post-launch support for bug fixes." },
+];
+
+const INCLUDED = [
+  { title: "Kick-off call", body: "30–45 min video call to align on goals, scope, and success criteria before any work begins." },
+  { title: "NDA on request", body: "Happy to sign your NDA or use mine — confidentiality is standard, not a premium add-on." },
+  { title: "Async progress updates", body: "Regular written updates so you're never in the dark. I document decisions as I go." },
+  { title: "Revision rounds", body: "Every tier includes defined revision rounds — use them, don't rush them." },
+  { title: "Source files", body: "You own everything. Figma source files, code repository access, no vendor lock-in." },
+  { title: "30-day support", body: "Post-delivery bug fixes and minor adjustments included on all build engagements." },
 ];
 
 const FAQS = [
-  {
-    q: "Do you do hourly work?",
-    a: "No. I only work on fixed-scope engagements. Hourly billing creates misaligned incentives — I move fast, and I shouldn't be penalized for it.",
-  },
-  {
-    q: "Can I hire you for just design (no code)?",
-    a: "Yes. The UX Audit and Design Sprint tiers are design-only. Code is optional at every tier — we scope based on what you need.",
-  },
-  {
-    q: "What's your current availability?",
-    a: "I have 5–10 hours/week available for client work. I take on one active engagement at a time. If you're planning ahead, reach out early — slots fill quickly.",
-  },
-  {
-    q: "Do you work with non-technical founders?",
-    a: "Yes. Half my clients are non-technical. I'll explain technical decisions in plain language and give you enough context to make informed choices.",
-  },
-  {
-    q: "What happens if the scope needs to change?",
-    a: "Out-of-scope work is always discussed before starting. I'll give you a change order estimate, you approve it, and we move forward. No silent billing.",
-  },
-  {
-    q: "Do you offer retainers?",
-    a: "Yes — the Enterprise tier is a monthly retainer. For smaller ongoing relationships, reach out and we can discuss a custom arrangement.",
-  },
-  {
-    q: "What tech stack do you use for builds?",
-    a: "React + TypeScript + Tailwind CSS as the default. Backend: FastAPI (Python) or Next.js API routes depending on the project. Hosting: Vercel. I'll adapt to your existing stack.",
-  },
-  {
-    q: "Is there a payment plan?",
-    a: "Yes. All engagements are split into milestones — typically 50% upfront, 50% on delivery for smaller projects. Longer engagements split across 3–4 milestones.",
-  },
+  { q: "Do you do hourly work?", a: "No. I only work on fixed-scope engagements. Hourly billing creates misaligned incentives — I move fast, and I shouldn't be penalized for it." },
+  { q: "Can I hire you for just design (no code)?", a: "Yes. Brand identity and UI/UX product design can be design-only. Development is added when the project needs it — we scope that separately." },
+  { q: "What's your current availability?", a: "I have 5–10 hours/week available for client work. I take on one active engagement at a time. If you're planning ahead, reach out early — slots fill quickly." },
+  { q: "Do you work with non-technical founders?", a: "Yes. Half my clients are non-technical. I'll explain technical decisions in plain language and give you enough context to make informed choices." },
+  { q: "What happens if the scope needs to change?", a: "Out-of-scope work is always discussed before starting. I'll give you a change order estimate, you approve it, and we move forward. No silent billing." },
+  { q: "Do you offer retainers?", a: "Yes — the Enterprise tier is a monthly retainer. For smaller ongoing relationships, reach out and we can discuss a custom arrangement." },
+  { q: "What tech stack do you use for builds?", a: "React + TypeScript + Tailwind CSS as the default. Backend: FastAPI (Python) or Next.js API routes depending on the project. Hosting: Vercel. I'll adapt to your existing stack." },
+  { q: "Is there a payment plan?", a: "Yes. All engagements are split into milestones — typically 50% upfront, 50% on delivery for smaller projects. Longer engagements split across 3–4 milestones." },
 ];
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <motion.div
-      layout
-      style={{
-        borderBottom: "1px solid rgba(255,255,255,0.07)",
-      }}
-    >
+    <div style={{ borderBottom: "1px solid var(--line)" }}>
       <button
         onClick={() => setOpen((o) => !o)}
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "20px 0",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          textAlign: "left",
-          gap: "16px",
-        }}
         aria-expanded={open}
+        style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", padding: "1.15rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left", color: "var(--ink)", fontFamily: "var(--font-display)", fontSize: "1.15rem" }}
       >
-        <span
-          style={{
-            fontFamily: "'Syne', sans-serif",
-            fontWeight: 600,
-            color: "#ffffff",
-            fontSize: "0.975rem",
-            lineHeight: 1.4,
-          }}
-        >
-          {q}
-        </span>
-        <motion.span
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-          style={{ flexShrink: 0, color: "#0080FF" }}
-        >
+        {q}
+        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }} style={{ color: "var(--accent)", flexShrink: 0 }}>
           <ChevronDown size={18} />
         </motion.span>
       </button>
       <AnimatePresence>
         {open && (
-          <motion.p
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            style={{
-              color: "#8A93A6",
-              fontSize: "0.9rem",
-              lineHeight: 1.75,
-              fontFamily: "'DM Sans', sans-serif",
-              margin: "0 0 20px",
-              paddingRight: "32px",
-            }}
-          >
+          <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="lede" style={{ margin: "0 0 1.1rem", paddingRight: "2rem", fontSize: "1rem" }}>
             {a}
           </motion.p>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
@@ -150,311 +62,64 @@ export function PricingPage() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
+    <div style={{ paddingTop: "72px" }}>
       <Helmet>
         <title>Pricing & Process | Giorgi Lortkipanidze</title>
-        <meta
-          name="description"
-          content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs."
-        />
+        <meta name="description" content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs." />
         <meta property="og:title" content="Pricing & Process | Giorgi Lortkipanidze" />
-        <meta
-          property="og:description"
-          content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs."
-        />
+        <meta property="og:description" content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs." />
         <meta property="og:url" content="https://www.giorgilortkipanidze.online/pricing" />
         <meta name="twitter:title" content="Pricing & Process | Giorgi Lortkipanidze" />
-        <meta
-          name="twitter:description"
-          content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs."
-        />
+        <meta name="twitter:description" content="Fixed-scope engagements, never hourly — from $2–4k UX audits to $15–30k MVP builds. See the five-step process, what every project includes, and FAQs." />
         <link rel="canonical" href="https://www.giorgilortkipanidze.online/pricing" />
       </Helmet>
 
       <PricingSection />
 
-      {/* Process */}
-      <section
-        style={{
-          background: "linear-gradient(180deg, #0A0E1A 0%, #0C1220 50%, #0A0E1A 100%)",
-          padding: "80px 0",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <motion.div {...FADE_UP} transition={{ duration: 0.55 }} style={{ marginBottom: "48px" }}>
-            <p
-              style={{
-                color: "#0080FF",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "12px",
-              }}
-            >
-              Process
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontWeight: 800,
-                color: "#ffffff",
-                fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-                margin: 0,
-              }}
-            >
-              How an engagement works
-            </h2>
-            <p
-              style={{
-                color: "#8A93A6",
-                fontSize: "0.95rem",
-                fontFamily: "'DM Sans', sans-serif",
-                marginTop: "12px",
-                maxWidth: "480px",
-              }}
-            >
-              From first message to shipped product — here's exactly what to expect.
-            </p>
-          </motion.div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-            {PROCESS.map((step, i) => (
-              <motion.div
-                key={step.step}
-                {...FADE_UP}
-                transition={{ duration: 0.55, delay: i * 0.09 }}
-                className="grid sm:grid-cols-[120px_1fr]"
-                style={{
-                  gap: "0 32px",
-                  padding: "28px 0",
-                  borderBottom: i < PROCESS.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "'Syne', sans-serif",
-                    fontWeight: 800,
-                    fontSize: "2rem",
-                    color: "rgba(0,128,255,0.2)",
-                    letterSpacing: "-0.03em",
-                    lineHeight: 1,
-                    paddingTop: "4px",
-                  }}
-                >
-                  {step.step}
+      <section className="studio-section" style={{ paddingTop: 0 }}>
+        <div className="studio-wrap">
+          <p className="kicker">Process</p>
+          <h2 className="display" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}>How an engagement works</h2>
+          <p className="lede" style={{ marginTop: "0.75rem", maxWidth: "32rem" }}>From first message to shipped product — here's exactly what to expect.</p>
+          <div style={{ marginTop: "1.5rem", borderTop: "1px solid var(--line)" }}>
+            {PROCESS.map((step) => (
+              <article key={step.step} className="grid md:grid-cols-12" style={{ gap: "0.5rem 1.5rem", padding: "1.35rem 0", borderBottom: "1px solid var(--line)" }}>
+                <p className="md:col-span-2 display" style={{ fontSize: "1.8rem", color: "var(--accent)", margin: 0 }}>{step.step}</p>
+                <div className="md:col-span-10">
+                  <h3 className="display" style={{ fontSize: "1.4rem" }}>{step.title}</h3>
+                  <p className="lede" style={{ marginTop: "0.4rem", fontSize: "1rem", maxWidth: "40rem" }}>{step.description}</p>
                 </div>
-                <div>
-                  <h3
-                    style={{
-                      fontFamily: "'Syne', sans-serif",
-                      fontWeight: 700,
-                      color: "#ffffff",
-                      fontSize: "1rem",
-                      margin: "0 0 8px",
-                    }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    style={{
-                      color: "#8A93A6",
-                      fontSize: "0.9rem",
-                      lineHeight: 1.75,
-                      fontFamily: "'DM Sans', sans-serif",
-                      margin: 0,
-                      maxWidth: "560px",
-                    }}
-                  >
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* What's always included */}
-      <section style={{ background: "#0A0E1A", padding: "80px 0" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <motion.div {...FADE_UP} transition={{ duration: 0.55 }} style={{ marginBottom: "40px" }}>
-            <p
-              style={{
-                color: "#0080FF",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "12px",
-              }}
-            >
-              Standard inclusions
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontWeight: 800,
-                color: "#ffffff",
-                fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-                margin: 0,
-              }}
-            >
-              Every project includes
-            </h2>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { title: "Kick-off call", body: "30–45 min video call to align on goals, scope, and success criteria before any work begins." },
-              { title: "NDA on request", body: "Happy to sign your NDA or use mine — confidentiality is standard, not a premium add-on." },
-              { title: "Async progress updates", body: "Regular written updates so you're never in the dark. I document decisions as I go." },
-              { title: "Revision rounds", body: "Every tier includes defined revision rounds — use them, don't rush them." },
-              { title: "Source files", body: "You own everything. Figma source files, code repository access, no vendor lock-in." },
-              { title: "30-day support", body: "Post-delivery bug fixes and minor adjustments included on all build engagements." },
-            ].map((item, i) => (
-              <motion.div
-                key={item.title}
-                {...FADE_UP}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "14px",
-                  padding: "22px",
-                }}
-              >
-                <h3
-                  style={{
-                    fontFamily: "'Syne', sans-serif",
-                    fontWeight: 700,
-                    color: "#ffffff",
-                    fontSize: "0.95rem",
-                    margin: "0 0 8px",
-                  }}
-                >
-                  {item.title}
-                </h3>
-                <p
-                  style={{
-                    color: "#8A93A6",
-                    fontSize: "0.85rem",
-                    lineHeight: 1.7,
-                    fontFamily: "'DM Sans', sans-serif",
-                    margin: 0,
-                  }}
-                >
-                  {item.body}
-                </p>
-              </motion.div>
+      <section className="studio-section" style={{ paddingTop: 0 }}>
+        <div className="studio-wrap">
+          <p className="kicker">Standard inclusions</p>
+          <h2 className="display" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", marginBottom: "1.5rem" }}>Every project includes</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3" style={{ gap: "1.25rem" }}>
+            {INCLUDED.map((item) => (
+              <article key={item.title} style={{ borderTop: "1px solid var(--ink)", paddingTop: "0.9rem" }}>
+                <h3 className="display" style={{ fontSize: "1.3rem" }}>{item.title}</h3>
+                <p className="lede" style={{ marginTop: "0.45rem", fontSize: "0.98rem" }}>{item.body}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section style={{ background: "#0A0E1A", padding: "0 0 112px" }}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <motion.div {...FADE_UP} transition={{ duration: 0.55 }} style={{ marginBottom: "40px" }}>
-            <p
-              style={{
-                color: "#0080FF",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "12px",
-              }}
-            >
-              FAQ
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontWeight: 800,
-                color: "#ffffff",
-                fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-                margin: 0,
-              }}
-            >
-              Common questions
-            </h2>
-          </motion.div>
-
-          <div>
-            {FAQS.map((faq) => (
-              <FaqItem key={faq.q} q={faq.q} a={faq.a} />
-            ))}
+      <section className="studio-section" style={{ paddingTop: 0 }}>
+        <div className="studio-wrap" style={{ maxWidth: 760 }}>
+          <p className="kicker">FAQ</p>
+          <h2 className="display" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", marginBottom: "1rem" }}>Common questions</h2>
+          {FAQS.map((faq) => <FaqItem key={faq.q} q={faq.q} a={faq.a} />)}
+          <p className="lede" style={{ marginTop: "2rem" }}>Still have questions?</p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", marginTop: "1rem" }}>
+            <a href="/book" onClick={(e) => { e.preventDefault(); navigate("/book"); }} className="btn btn-ink">Book a discovery call</a>
+            <a href="mailto:thegiorgilortki@gmail.com" className="btn btn-line">Ask me directly</a>
           </div>
-
-          <motion.div
-            {...FADE_UP}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            style={{ marginTop: "48px", textAlign: "center" }}
-          >
-            <p
-              style={{
-                color: "#8A93A6",
-                fontSize: "0.95rem",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "20px",
-              }}
-            >
-              Still have questions?
-            </p>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "12px",
-                justifyContent: "center",
-              }}
-            >
-              <a
-                href="/book"
-                onClick={(e) => { e.preventDefault(); navigate("/book"); }}
-                style={{
-                  display: "inline-block",
-                  background: "#0080FF",
-                  color: "#0A0E1A",
-                  borderRadius: "12px",
-                  padding: "13px 28px",
-                  fontSize: "0.9rem",
-                  fontWeight: 700,
-                  textDecoration: "none",
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
-                Book a discovery call →
-              </a>
-              <a
-                href="mailto:thegiorgilortki@gmail.com"
-                style={{
-                  display: "inline-block",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  color: "#F5F7FA",
-                  borderRadius: "12px",
-                  padding: "13px 28px",
-                  fontSize: "0.9rem",
-                  fontWeight: 700,
-                  textDecoration: "none",
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
-                Ask me directly
-              </a>
-            </div>
-          </motion.div>
         </div>
       </section>
     </div>

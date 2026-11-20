@@ -2,12 +2,6 @@ import { motion } from "motion/react";
 import { Helmet } from "react-helmet-async";
 import { AboutSection } from "../components/AboutSection";
 
-const FADE_UP = {
-  initial: { opacity: 0, y: 28 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-};
-
 const TIMELINE = [
   {
     year: "2024–Now",
@@ -36,328 +30,90 @@ const TIMELINE = [
 ];
 
 const SKILL_GROUPS = [
-  {
-    category: "Design",
-    skills: ["Figma", "Design Systems", "Motion / Framer", "UX Research", "Prototyping", "Accessibility"],
-  },
-  {
-    category: "Frontend",
-    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vite", "WebSockets"],
-  },
-  {
-    category: "Backend & Data",
-    skills: ["FastAPI", "Python", "Supabase", "PostgreSQL", "REST APIs", "Node.js"],
-  },
-  {
-    category: "Tooling",
-    skills: ["Git / GitHub", "Linear", "Vercel", "Figma Code Connect", "MapLibre GL JS", "Docker"],
-  },
+  { category: "Design", skills: ["Figma", "Design Systems", "Motion / Framer", "UX Research", "Prototyping", "Accessibility"] },
+  { category: "Frontend", skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vite", "WebSockets"] },
+  { category: "Backend & Data", skills: ["FastAPI", "Python", "Supabase", "PostgreSQL", "REST APIs", "Node.js"] },
+  { category: "Tooling", skills: ["Git / GitHub", "Linear", "Vercel", "Figma Code Connect", "MapLibre GL JS", "Docker"] },
 ];
 
 const VALUES = [
-  {
-    title: "Design and code are one discipline",
-    body: "I don't believe in handoffs. The best products are built by people who can think across both sides of the stack — and I've spent years building that muscle.",
-  },
-  {
-    title: "Scope clarity before anything",
-    body: "Before touching a pixel or a component, I make sure we agree on what done looks like. Scope creep is a trust issue, not a complexity issue.",
-  },
-  {
-    title: "Async-first, documentation-heavy",
-    body: "I work best in writing. Every decision I make is documented — design rationale, component specs, architecture notes. Your team can always see why, not just what.",
-  },
-  {
-    title: "Ship, then improve",
-    body: "I bias towards getting something in front of users fast. Perfect is the enemy of shipped. I'd rather iterate on real feedback than polish a prototype nobody's seen.",
-  },
+  { title: "Design and code are one discipline", body: "I don't believe in handoffs. The best products are built by people who can think across both sides of the stack — and I've spent years building that muscle." },
+  { title: "Scope clarity before anything", body: "Before touching a pixel or a component, I make sure we agree on what done looks like. Scope creep is a trust issue, not a complexity issue." },
+  { title: "Async-first, documentation-heavy", body: "I work best in writing. Every decision I make is documented — design rationale, component specs, architecture notes. Your team can always see why, not just what." },
+  { title: "Ship, then improve", body: "I bias towards getting something in front of users fast. Perfect is the enemy of shipped. I'd rather iterate on real feedback than polish a prototype nobody's seen." },
 ];
 
 export function AboutPage() {
   return (
-    <div style={{ background: "#0A0E1A", paddingTop: "68px" }}>
+    <div style={{ paddingTop: "72px" }}>
       <Helmet>
         <title>About | Giorgi Lortkipanidze</title>
-        <meta
-          name="description"
-          content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on."
-        />
+        <meta name="description" content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on." />
         <meta property="og:title" content="About | Giorgi Lortkipanidze" />
-        <meta
-          property="og:description"
-          content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on."
-        />
+        <meta property="og:description" content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on." />
         <meta property="og:url" content="https://www.giorgilortkipanidze.online/about" />
         <meta name="twitter:title" content="About | Giorgi Lortkipanidze" />
-        <meta
-          name="twitter:description"
-          content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on."
-        />
+        <meta name="twitter:description" content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on." />
         <link rel="canonical" href="https://www.giorgilortkipanidze.online/about" />
       </Helmet>
 
       <AboutSection />
 
-      {/* Timeline */}
-      <section style={{ background: "#0A0E1A", padding: "0 0 96px" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <motion.div {...FADE_UP} transition={{ duration: 0.55 }} style={{ marginBottom: "48px" }}>
-            <p
-              style={{
-                color: "#0080FF",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "12px",
-              }}
-            >
-              Experience
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontWeight: 800,
-                color: "#ffffff",
-                fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-                margin: 0,
-              }}
-            >
-              Where I've been
-            </h2>
-          </motion.div>
-
-          <div style={{ position: "relative", paddingLeft: "28px" }}>
-            {/* Vertical line */}
-            <div
-              style={{
-                position: "absolute",
-                left: 0,
-                top: "8px",
-                bottom: "8px",
-                width: "2px",
-                background: "linear-gradient(180deg, #0080FF 0%, rgba(0,128,255,0.1) 100%)",
-                borderRadius: "1px",
-              }}
-            />
-
+      <section className="studio-section">
+        <div className="studio-wrap">
+          <p className="kicker">Experience</p>
+          <h2 className="display" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", marginBottom: "1.5rem" }}>Where I've been</h2>
+          <div style={{ borderTop: "1px solid var(--line)" }}>
             {TIMELINE.map((item, i) => (
-              <motion.div
+              <motion.article
                 key={item.year}
-                {...FADE_UP}
-                transition={{ duration: 0.55, delay: i * 0.1 }}
-                style={{ position: "relative", marginBottom: i < TIMELINE.length - 1 ? "40px" : 0 }}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="grid md:grid-cols-12"
+                style={{ gap: "0.6rem 1.5rem", padding: "1.4rem 0", borderBottom: "1px solid var(--line)" }}
               >
-                {/* Dot */}
-                <div
-                  style={{
-                    position: "absolute",
-                    left: "-35px",
-                    top: "6px",
-                    width: "12px",
-                    height: "12px",
-                    borderRadius: "50%",
-                    background: "#0080FF",
-                    boxShadow: "0 0 12px rgba(0,128,255,0.5)",
-                  }}
-                />
-                <p
-                  style={{
-                    color: "#0080FF",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    letterSpacing: "0.1em",
-                    fontFamily: "'DM Sans', sans-serif",
-                    marginBottom: "4px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {item.year}
-                </p>
-                <h3
-                  style={{
-                    fontFamily: "'Syne', sans-serif",
-                    fontWeight: 700,
-                    color: "#ffffff",
-                    fontSize: "1.05rem",
-                    margin: "0 0 8px",
-                  }}
-                >
-                  {item.title}
-                </h3>
-                <p
-                  style={{
-                    color: "#8A93A6",
-                    fontSize: "0.9rem",
-                    lineHeight: 1.7,
-                    fontFamily: "'DM Sans', sans-serif",
-                    margin: 0,
-                    maxWidth: "600px",
-                  }}
-                >
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section
-        style={{
-          background: "linear-gradient(180deg, #0A0E1A 0%, #0C1220 50%, #0A0E1A 100%)",
-          padding: "80px 0",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <motion.div {...FADE_UP} transition={{ duration: 0.55 }} style={{ marginBottom: "48px" }}>
-            <p
-              style={{
-                color: "#0080FF",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "12px",
-              }}
-            >
-              Skills
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontWeight: 800,
-                color: "#ffffff",
-                fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-                margin: 0,
-              }}
-            >
-              Full-stack by design
-            </h2>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {SKILL_GROUPS.map((group, i) => (
-              <motion.div
-                key={group.category}
-                {...FADE_UP}
-                transition={{ duration: 0.55, delay: i * 0.08 }}
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "16px",
-                  padding: "24px",
-                }}
-              >
-                <p
-                  style={{
-                    color: "#0080FF",
-                    fontSize: "0.7rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    fontFamily: "'DM Sans', sans-serif",
-                    marginBottom: "16px",
-                  }}
-                >
-                  {group.category}
-                </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {group.skills.map((skill) => (
-                    <div
-                      key={skill}
-                      style={{
-                        color: "#C5CCD9",
-                        fontSize: "0.875rem",
-                        fontFamily: "'DM Sans', sans-serif",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {skill}
-                    </div>
-                  ))}
+                <p className="md:col-span-3" style={{ margin: 0, fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent)" }}>{item.year}</p>
+                <div className="md:col-span-9">
+                  <h3 className="display" style={{ fontSize: "1.45rem" }}>{item.title}</h3>
+                  <p className="lede" style={{ marginTop: "0.45rem", fontSize: "1rem", maxWidth: "42rem" }}>{item.description}</p>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Values / Philosophy */}
-      <section style={{ background: "#0A0E1A", padding: "80px 0 112px" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <motion.div {...FADE_UP} transition={{ duration: 0.55 }} style={{ marginBottom: "48px" }}>
-            <p
-              style={{
-                color: "#0080FF",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                fontFamily: "'DM Sans', sans-serif",
-                marginBottom: "12px",
-              }}
-            >
-              How I work
-            </p>
-            <h2
-              style={{
-                fontFamily: "'Syne', sans-serif",
-                fontWeight: 800,
-                color: "#ffffff",
-                fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-                letterSpacing: "-0.02em",
-                lineHeight: 1.15,
-                margin: 0,
-              }}
-            >
-              Principles I don't negotiate on
-            </h2>
-          </motion.div>
+      <section className="studio-section" style={{ paddingTop: 0 }}>
+        <div className="studio-wrap">
+          <p className="kicker">Skills</p>
+          <h2 className="display" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", marginBottom: "1.75rem" }}>Full-stack by design</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4" style={{ gap: "1.5rem" }}>
+            {SKILL_GROUPS.map((group) => (
+              <div key={group.category} style={{ borderTop: "1px solid var(--ink)", paddingTop: "1rem" }}>
+                <p className="kicker">{group.category}</p>
+                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "0.4rem" }}>
+                  {group.skills.map((skill) => (
+                    <li key={skill} style={{ color: "var(--ink-soft)" }}>{skill}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <div className="grid sm:grid-cols-2 gap-5">
+      <section className="studio-section" style={{ paddingTop: 0 }}>
+        <div className="studio-wrap">
+          <p className="kicker">How I work</p>
+          <h2 className="display" style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", marginBottom: "1.5rem", maxWidth: "14ch" }}>Principles I don't negotiate on</h2>
+          <div className="grid md:grid-cols-2" style={{ gap: "0" }}>
             {VALUES.map((v, i) => (
-              <motion.div
-                key={v.title}
-                {...FADE_UP}
-                transition={{ duration: 0.55, delay: i * 0.1 }}
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "16px",
-                  padding: "28px",
-                }}
-              >
-                <h3
-                  style={{
-                    fontFamily: "'Syne', sans-serif",
-                    fontWeight: 700,
-                    color: "#ffffff",
-                    fontSize: "1rem",
-                    margin: "0 0 12px",
-                  }}
-                >
-                  {v.title}
-                </h3>
-                <p
-                  style={{
-                    color: "#8A93A6",
-                    fontSize: "0.9rem",
-                    lineHeight: 1.75,
-                    fontFamily: "'DM Sans', sans-serif",
-                    margin: 0,
-                  }}
-                >
-                  {v.body}
-                </p>
-              </motion.div>
+              <article key={v.title} style={{ padding: "1.4rem 1.2rem 1.4rem 0", borderTop: "1px solid var(--line)", paddingRight: i % 2 === 0 ? "2rem" : 0 }}>
+                <h3 className="display" style={{ fontSize: "1.45rem" }}>{v.title}</h3>
+                <p className="lede" style={{ marginTop: "0.6rem", fontSize: "1rem" }}>{v.body}</p>
+              </article>
             ))}
           </div>
         </div>

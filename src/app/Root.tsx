@@ -1,13 +1,20 @@
 import { Outlet, useLocation } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Navbar } from "./components/Navbar";
 import { FooterSection } from "./components/FooterSection";
+import { trackPage } from "../lib/analytics";
 
 export function Root() {
   const { pathname } = useLocation();
+  const firstView = useRef(true);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
+    if (firstView.current) {
+      firstView.current = false;
+      return;
+    }
+    trackPage(pathname);
   }, [pathname]);
 
   return (

@@ -1,4 +1,4 @@
-import { EXTRA_CATEGORIES } from "./services-rest";
+import { EXTRA_CATEGORIES } from "./services-rest.ts";
 
 export const PRICE_DISCLAIMER =
   "All prices are indicative estimates. Final project investment depends on scope, complexity, integrations, infrastructure, and technical requirements. Enterprise solutions are quoted individually.";

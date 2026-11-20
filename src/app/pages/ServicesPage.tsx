@@ -1,5 +1,6 @@
 import { Link } from "react-router";
-import { Helmet } from "react-helmet-async";
+import { Seo } from "../components/Seo";
+import { pageByPath } from "../../lib/seo";
 import { CATEGORIES, PRICE_DISCLAIMER, PRIMARY_CATEGORIES, SERVICES_FAQ, STACK, WHY, serviceBySlug } from "../../lib/services-catalog";
 import { CategoryCard } from "../components/services/CategoryCard";
 import { ServiceCard } from "../components/services/ServiceCard";
@@ -19,20 +20,12 @@ export function ServicesPage() {
 
   return (
     <div style={{ paddingTop: "72px" }}>
-      <Helmet>
-        <title>Services & Solutions | The Giorgi Lortki</title>
-        <meta name="description" content="Digital product design and engineering, from a premium website to enterprise platforms. Indicative ranges from $1,000 to $400,000+. Every project is a custom quote." />
-        <link rel="canonical" href="https://www.giorgilortkipanidze.online/services" />
-      </Helmet>
+      <Seo page={pageByPath("/services")!} />
 
       <header className="studio-wrap" style={{ paddingTop: "3rem", paddingBottom: "2.5rem" }}>
         <p className="kicker">The Giorgi Lortki · Services</p>
         <h1 className="display" style={{ fontSize: "clamp(2.8rem, 6vw, 5.2rem)", maxWidth: "14ch" }}>
-          We design.
-          <br />
-          We engineer.
-          <br />
-          <span style={{ color: "var(--accent)" }}>We deliver.</span>
+          Services and solutions
         </h1>
         <p className="lede" style={{ marginTop: "1.2rem", maxWidth: "42rem" }}>
           We design, engineer, and deliver complete digital products — from premium websites and custom software to complex SaaS platforms, mobile applications, marketplaces, and enterprise-grade solutions.

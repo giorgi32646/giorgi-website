@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 const PROJECTS = [
   {
@@ -33,8 +33,6 @@ const PROJECTS = [
 ];
 
 export function WorkSection() {
-  const navigate = useNavigate();
-
   return (
     <section id="work" aria-labelledby="work-heading" className="studio-section" style={{ paddingTop: 0 }}>
       <div className="studio-wrap">
@@ -95,9 +93,9 @@ export function WorkSection() {
         </div>
 
         <div style={{ marginTop: "2rem" }}>
-          <button type="button" onClick={() => navigate("/portfolio")} className="btn btn-line">
+          <Link to="/portfolio" className="btn btn-line">
             View full portfolio <ArrowUpRight size={15} aria-hidden="true" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,28 +1,11 @@
-import { Helmet } from "react-helmet-async";
+import { Seo } from "../components/Seo";
+import { pageByPath } from "../../lib/seo";
 import { WorkSection } from "../components/WorkSection";
 
 export function WorkPage() {
   return (
     <div style={{ paddingTop: "72px" }}>
-      <Helmet>
-        <title>Selected Work | Giorgi Lortkipanidze</title>
-        <meta
-          name="description"
-          content="Own products designed and developed solo, from zero to production — Universal Drone OS, RedFlag.ai, and SecureShare. Real-time systems, AI, and encryption."
-        />
-        <meta property="og:title" content="Selected Work | Giorgi Lortkipanidze" />
-        <meta
-          property="og:description"
-          content="Own products designed and developed solo, from zero to production — Universal Drone OS, RedFlag.ai, and SecureShare. Real-time systems, AI, and encryption."
-        />
-        <meta property="og:url" content="https://www.giorgilortkipanidze.online/work" />
-        <meta name="twitter:title" content="Selected Work | Giorgi Lortkipanidze" />
-        <meta
-          name="twitter:description"
-          content="Own products designed and developed solo, from zero to production — Universal Drone OS, RedFlag.ai, and SecureShare. Real-time systems, AI, and encryption."
-        />
-        <link rel="canonical" href="https://www.giorgilortkipanidze.online/work" />
-      </Helmet>
+      <Seo page={pageByPath("/work")!} />
 
       <WorkSection />
     </div>

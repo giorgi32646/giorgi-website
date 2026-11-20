@@ -1,8 +1,8 @@
 import { motion } from "motion/react";
-import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router";
+import { Seo } from "../components/Seo";
+import { pageByPath } from "../../lib/seo";
 import { ContactSection } from "../components/ContactSection";
-import { Mail, Twitter, Clock, MessageSquare, Zap, Shield, CalendarDays } from "lucide-react";
+import { Mail, Clock, MessageSquare, Zap, Shield, CalendarDays } from "lucide-react";
 
 const WHAT_TO_INCLUDE = [
   { icon: MessageSquare, title: "What you're building", body: "Give me a one-paragraph overview of your product — what it does, who it's for, and what stage it's at." },
@@ -14,7 +14,6 @@ const WHAT_TO_INCLUDE = [
 const WAYS_TO_REACH = [
   { icon: CalendarDays, label: "Book a call", value: "Free 30-min intro", href: "/book", note: "Fastest way to get time on my calendar" },
   { icon: Mail, label: "Email", value: "thegiorgilortki@gmail.com", href: "mailto:thegiorgilortki@gmail.com", note: "Best for detailed project inquiries" },
-  { icon: Twitter, label: "X (Twitter)", value: "@Giorgi5926481", href: "https://x.com/Giorgi5926481", note: "Good for quick questions or following along" },
 ];
 
 const CONTACT_FAQS = [
@@ -31,20 +30,9 @@ const AVAILABILITY = [
 ];
 
 export function ContactPage() {
-  const navigate = useNavigate();
-
   return (
     <div style={{ paddingTop: "72px" }}>
-      <Helmet>
-        <title>Contact | Giorgi Lortkipanidze</title>
-        <meta name="description" content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4." />
-        <meta property="og:title" content="Contact | Giorgi Lortkipanidze" />
-        <meta property="og:description" content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4." />
-        <meta property="og:url" content="https://www.giorgilortkipanidze.online/contact" />
-        <meta name="twitter:title" content="Contact | Giorgi Lortkipanidze" />
-        <meta name="twitter:description" content="Start a project or ask a question. Replies within 24 hours on weekdays, free 30-minute intro calls, and remote collaboration across time zones from UTC+4." />
-        <link rel="canonical" href="https://www.giorgilortkipanidze.online/contact" />
-      </Helmet>
+      <Seo page={pageByPath("/contact")!} />
 
       <ContactSection />
 
@@ -77,14 +65,12 @@ export function ContactPage() {
           <div className="grid md:grid-cols-3" style={{ gap: "1rem" }}>
             {WAYS_TO_REACH.map((channel) => {
               const Icon = channel.icon;
-              const isInternal = channel.href.startsWith("/");
               return (
                 <a
                   key={channel.label}
                   href={channel.href}
                   target={channel.href.startsWith("http") ? "_blank" : undefined}
                   rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  onClick={isInternal ? (e) => { e.preventDefault(); navigate(channel.href); } : undefined}
                   style={{ textDecoration: "none", color: "inherit", borderTop: "1px solid var(--ink)", paddingTop: "0.9rem" }}
                 >
                   <Icon size={16} aria-hidden="true" style={{ color: "var(--accent)" }} />

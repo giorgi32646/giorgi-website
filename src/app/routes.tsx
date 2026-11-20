@@ -9,6 +9,7 @@ import { BookPage } from "./pages/BookPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { ServiceCategoryPage } from "./pages/ServiceCategoryPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: "pricing", element: <Navigate to="/services" replace /> },
       { path: "contact", Component: ContactPage },
       { path: "book", Component: BookPage },
+      { path: "*", Component: NotFoundPage },
     ],
   },
 ]);

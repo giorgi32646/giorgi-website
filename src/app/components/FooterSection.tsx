@@ -1,3 +1,7 @@
+import { FacebookIcon } from "./FacebookIcon";
+import { InstagramIcon } from "./InstagramIcon";
+import { XIcon } from "./XIcon";
+
 export function FooterSection() {
   const year = new Date().getFullYear();
 
@@ -11,8 +15,14 @@ export function FooterSection() {
           </span>
         </p>
         <div style={{ display: "flex", gap: "1.25rem", alignItems: "center", fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "var(--muted)" }}>
-          <a href="https://x.com/Giorgi5926481" target="_blank" rel="noopener noreferrer" aria-label="Follow Giorgi Lortkipanidze on X (Twitter)" style={{ color: "var(--muted)", textDecoration: "none" }}>
-            @Giorgi5926481
+          <a href="https://x.com/Thegiorgilortki" target="_blank" rel="noopener noreferrer" aria-label="Follow Giorgi Lortkipanidze on X" style={{ color: "var(--muted)", textDecoration: "none", display: "inline-flex", alignItems: "center" }}>
+            <XIcon size={15} />
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61580678950143" target="_blank" rel="noopener noreferrer" aria-label="Follow Giorgi Lortkipanidze on Facebook" style={{ color: "var(--muted)", textDecoration: "none", display: "inline-flex", alignItems: "center" }}>
+            <FacebookIcon size={15} />
+          </a>
+          <a href="https://www.instagram.com/thegiorgilortki" target="_blank" rel="noopener noreferrer" aria-label="Follow Giorgi Lortkipanidze on Instagram" style={{ color: "var(--muted)", textDecoration: "none", display: "inline-flex", alignItems: "center" }}>
+            <InstagramIcon size={15} />
           </a>
           <span aria-label={`Copyright ${year} Giorgi Lortkipanidze`}>© {year}</span>
         </div>

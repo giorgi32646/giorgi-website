@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { Helmet } from "react-helmet-async";
+import { Seo } from "../components/Seo";
+import { pageByPath } from "../../lib/seo";
 import { AboutSection } from "../components/AboutSection";
 
 const TIMELINE = [
@@ -46,16 +47,7 @@ const VALUES = [
 export function AboutPage() {
   return (
     <div style={{ paddingTop: "72px" }}>
-      <Helmet>
-        <title>About | Giorgi Lortkipanidze</title>
-        <meta name="description" content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on." />
-        <meta property="og:title" content="About | Giorgi Lortkipanidze" />
-        <meta property="og:description" content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on." />
-        <meta property="og:url" content="https://www.giorgilortkipanidze.online/about" />
-        <meta name="twitter:title" content="About | Giorgi Lortkipanidze" />
-        <meta name="twitter:description" content="From UI/UX designer to full-stack product builder — my experience, my design and engineering skill set, and the working principles I don't negotiate on." />
-        <link rel="canonical" href="https://www.giorgilortkipanidze.online/about" />
-      </Helmet>
+      <Seo page={pageByPath("/about")!} />
 
       <AboutSection />
 

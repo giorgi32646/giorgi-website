@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router";
 import { Loader2 } from "lucide-react";
 import { CATEGORIES, categoryBySlug, questionsFor, type Question } from "../../../lib/services-catalog";
 import { InquirySelect } from "./InquirySelect";
+import { track } from "../../../lib/analytics";
 
 const FORMSPREE_URL = "https://formspree.io/f/xgobrzaj";
 
@@ -156,6 +157,11 @@ export function ProjectInquiryForm({
         return;
       }
       setStatus("success");
+      track("inquiry_completed", {
+        category: category?.slug ?? fields.category,
+        product: service?.slug ?? fields.product,
+        budget: fields.budget,
+      });
       setFields(EMPTY);
       setExtras({});
     } catch {

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { Helmet } from "react-helmet-async";
+import { Seo } from "../components/Seo";
+import { pageByPath } from "../../lib/seo";
 import { Clock, Video, Globe, Wallet } from "lucide-react";
 import { BookingWidget } from "../components/BookingWidget";
 
@@ -19,16 +20,7 @@ const AGENDA = [
 export function BookPage() {
   return (
     <div style={{ paddingTop: "72px" }}>
-      <Helmet>
-        <title>Book a Call | Giorgi Lortkipanidze</title>
-        <meta name="description" content="Book a free 30-minute intro call. We'll cover what you're building, where the friction is, and whether I'm the right fit — no pitch, no obligation." />
-        <meta property="og:title" content="Book a Call | Giorgi Lortkipanidze" />
-        <meta property="og:description" content="Book a free 30-minute intro call. We'll cover what you're building, where the friction is, and whether I'm the right fit — no pitch, no obligation." />
-        <meta property="og:url" content="https://www.giorgilortkipanidze.online/book" />
-        <meta name="twitter:title" content="Book a Call | Giorgi Lortkipanidze" />
-        <meta name="twitter:description" content="Book a free 30-minute intro call. We'll cover what you're building, where the friction is, and whether I'm the right fit — no pitch, no obligation." />
-        <link rel="canonical" href="https://www.giorgilortkipanidze.online/book" />
-      </Helmet>
+      <Seo page={pageByPath("/book")!} />
 
       <section className="studio-section" style={{ paddingBottom: "2rem" }}>
         <div className="studio-wrap">

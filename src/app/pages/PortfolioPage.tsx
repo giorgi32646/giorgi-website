@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-import { Helmet } from "react-helmet-async";
+import { Seo } from "../components/Seo";
+import { pageByPath } from "../../lib/seo";
 import { motion, AnimatePresence } from "motion/react";
 import {
   X, ArrowUpRight, Check,
@@ -773,25 +774,7 @@ export function PortfolioPage() {
 
   return (
     <div style={{ background: "transparent", paddingTop: "68px" }}>
-      <Helmet>
-        <title>Portfolio | Giorgi Lortkipanidze</title>
-        <meta
-          name="description"
-          content="SaaS products, UI/UX design, brand identities, and concept work — designed and built end to end in Tbilisi. Browse the full project archive."
-        />
-        <meta property="og:title" content="Portfolio | Giorgi Lortkipanidze" />
-        <meta
-          property="og:description"
-          content="SaaS products, UI/UX design, brand identities, and concept work — designed and built end to end in Tbilisi. Browse the full project archive."
-        />
-        <meta property="og:url" content="https://www.giorgilortkipanidze.online/portfolio" />
-        <meta name="twitter:title" content="Portfolio | Giorgi Lortkipanidze" />
-        <meta
-          name="twitter:description"
-          content="SaaS products, UI/UX design, brand identities, and concept work — designed and built end to end in Tbilisi. Browse the full project archive."
-        />
-        <link rel="canonical" href="https://www.giorgilortkipanidze.online/portfolio" />
-      </Helmet>
+      <Seo page={pageByPath("/portfolio")!} />
 
       {/* Page header */}
       <div style={{

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 
@@ -12,7 +12,6 @@ const NAV_LINKS = [
 ];
 
 export function Navbar() {
-  const navigate = useNavigate();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -31,11 +30,6 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const handleLink = (href: string) => {
-    setMobileOpen(false);
-    navigate(href);
-  };
 
   const isLinkActive = (href: string) =>
     href === "/services" ? location.pathname.startsWith("/services") : location.pathname === href;
@@ -69,37 +63,33 @@ export function Navbar() {
           className="studio-wrap"
           style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "72px", gap: "1.5rem" }}
         >
-          <button
-            onClick={() => handleLink("/")}
+          <Link
+            to="/"
+            onClick={() => setMobileOpen(false)}
             aria-label="Giorgi Lortkipanidze — home"
             style={{
               display: "flex",
               alignItems: "baseline",
               gap: "0.55rem",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: 0,
+              textDecoration: "none",
               color: "var(--ink)",
             }}
           >
             <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: isMobile ? "0.95rem" : "0.82rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>
               The Giorgi Lortki
             </span>
-          </button>
+          </Link>
 
           {!isMobile && (
             <nav aria-label="Main navigation" style={{ display: "flex", alignItems: "center", gap: "1.35rem" }}>
               {NAV_LINKS.map((link) => {
                 const active = isLinkActive(link.href);
                 return (
-                  <button
+                  <Link
                     key={link.href}
-                    onClick={() => handleLink(link.href)}
+                    to={link.href}
                     style={{
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
+                      textDecoration: "none",
                       padding: "0.35rem 0",
                       fontFamily: "var(--font-body)",
                       fontSize: "0.92rem",
@@ -109,7 +99,7 @@ export function Navbar() {
                     }}
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 );
               })}
             </nav>
@@ -117,9 +107,9 @@ export function Navbar() {
 
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
             {!isMobile && (
-              <a href="/book" onClick={(e) => { e.preventDefault(); handleLink("/book"); }} className="btn btn-ink" style={{ minHeight: "42px", padding: "0.55rem 0.95rem" }}>
+              <Link to="/book" className="btn btn-ink" style={{ minHeight: "42px", padding: "0.55rem 0.95rem" }}>
                 Book a call
-              </a>
+              </Link>
             )}
             {isMobile && (
               <button
@@ -169,16 +159,14 @@ export function Navbar() {
             >
               <div className="studio-wrap" style={{ display: "flex", flexDirection: "column", padding: "0.5rem 0 1.25rem" }}>
                 {NAV_LINKS.map((link) => (
-                  <button
+                  <Link
                     key={link.href}
+                    to={link.href}
                     role="menuitem"
-                    onClick={() => handleLink(link.href)}
+                    onClick={() => setMobileOpen(false)}
                     style={{
-                      textAlign: "left",
-                      background: "none",
-                      border: "none",
+                      textDecoration: "none",
                       borderBottom: "1px solid var(--line)",
-                      cursor: "pointer",
                       padding: "0.95rem 0",
                       fontFamily: "var(--font-display)",
                       fontSize: "1.65rem",
@@ -186,11 +174,11 @@ export function Navbar() {
                     }}
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 ))}
-                <a href="/book" onClick={(e) => { e.preventDefault(); handleLink("/book"); }} className="btn btn-ink" style={{ marginTop: "1rem" }}>
+                <Link to="/book" onClick={() => setMobileOpen(false)} className="btn btn-ink" style={{ marginTop: "1rem" }}>
                   Book a call
-                </a>
+                </Link>
               </div>
             </motion.div>
           )}

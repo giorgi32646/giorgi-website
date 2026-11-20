@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router";
-import { Helmet } from "react-helmet-async";
 import { PRICE_DISCLAIMER, categoryBySlug } from "../../lib/services-catalog";
+import { Seo } from "../components/Seo";
+import { categorySeo, notFoundSeo } from "../../lib/seo";
 import { CategoryMockup } from "../components/services/Mockups";
 import { ServiceCard } from "../components/services/ServiceCard";
 import { ProjectInquiryForm } from "../components/services/ProjectInquiryForm";
@@ -12,6 +13,7 @@ export function ServiceCategoryPage() {
   if (!category) {
     return (
       <div className="studio-wrap" style={{ paddingTop: "8rem", paddingBottom: "4rem" }}>
+        <Seo page={notFoundSeo()} />
         <h1 className="display" style={{ fontSize: "2.4rem" }}>That category is not in the catalog.</h1>
         <Link to="/services" className="btn btn-ink" style={{ marginTop: "1rem" }}>Back to services</Link>
       </div>
@@ -20,11 +22,7 @@ export function ServiceCategoryPage() {
 
   return (
     <div style={{ paddingTop: "72px" }}>
-      <Helmet>
-        <title>{category.title} | The Giorgi Lortki</title>
-        <meta name="description" content={`${category.description} Starting ${category.starting}. Indicative ranges, quoted to scope.`} />
-        <link rel="canonical" href={`https://www.giorgilortkipanidze.online/services/${category.slug}`} />
-      </Helmet>
+      <Seo page={categorySeo(category.slug)!} />
       <header className="studio-wrap" style={{ paddingTop: "2.5rem" }}>
         <p className="kicker"><Link to="/services" style={{ color: "var(--accent)", textDecoration: "none" }}>Services</Link> / {category.number}</p>
         <div className="grid lg:grid-cols-12" style={{ gap: "1.5rem" }}>
